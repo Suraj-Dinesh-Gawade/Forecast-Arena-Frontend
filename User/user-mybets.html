@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mybets</title>
+    <link rel="stylesheet" href="userLayout.css" />
+    <link rel="stylesheet" href="user-mybets.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <div id="logo">
+                <h2>Forecast Arena</h2>
+            </div>
+            <nav id="menu">
+                <a href="user-dashboard.html">Dashboard</a>
+                <a href="user-questions.html">Questions</a>
+                <a href="user-mybets.html" class="active">My Bets</a>
+                <a href="user-leaderboard.html">Leaderboard</a>
+                <a href="user-profile.html">Profile</a>
+            </nav>
+            <div id="logout-section">
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <h1>My Bets</h1>
+            <p id="question-subtitle">
+                Track all your active and completed bets.
+            </p>
+
+            <!-- FIXED: Dynamic cards container (removes the hardcoded placeholder) -->
+            <div id="bets-container">
+                <!-- Dynamically populated cards will load here -->
+            </div>
+        </div>
+    </div>
+    
+<script src="user-my-bets.js"></script>
+</body>
+</html>

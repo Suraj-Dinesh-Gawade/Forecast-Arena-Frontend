@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Admin</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="admin-user.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="sidebar">
+            <div id="logo">
+                <h2>Forecast Arena</h2>
+            </div>
+            <nav id="menu">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-add-questions.html">Add Question</a>
+                <a href="admin-manage-questions.html">Manage Questions</a>
+                <a href="admin-user.html" class="active">Users</a>
+            </nav>
+            <div id="logout-section">
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <h1>Predictor Directory</h1>
+            <p class="subtitle">Monitor user balances, account statuses, and manage platform access.</p>
+
+            <div class="search-container">
+                <input type="text" id="user-search" placeholder="Search by name or username...">
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Coin Balance</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-table-body">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="admin-user.js"></script>
+</body>
+</html>

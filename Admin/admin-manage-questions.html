@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Questions - Admin</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="admin-manage.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="sidebar">
+            <div id="logo">
+                <h2>Forecast Arena</h2>
+            </div>
+            <nav id="menu">
+                <a href="admin-dashboard.html">Dashboard</a>
+                <a href="admin-add-questions.html">Add Question</a>
+                <a href="admin-manage-questions.html" class="active">Manage Questions</a>
+                <a href="admin-user.html">Users</a>
+            </nav>
+            <div id="logout-section">
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <h1>Manage Predictions</h1>
+            <p class="subtitle">Monitor active forecasting markets and resolve completed questions.</p>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Question</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody id="questions-table-body">
+                     
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="admin-manage-questions.js"></script>
+</body>
+</html>

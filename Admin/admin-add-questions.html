@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Question - Admin</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="admin-forms.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="sidebar">
+            <div id="logo">
+                <h2>Forecast Arena</h2>
+            </div>
+            <nav id="menu">
+                <a href="/admin-dashboard.html">Dashboard</a>
+                <a href="/admin-add-questions.html" class="active">Add Question</a>
+                <a href="/admin-manage-questions.html">Manage Questions</a>
+                <a href="/admin-user.html">Users</a>
+            </nav>
+            <div id="logout-section">
+                <button id="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <h1>Launch New Prediction Market</h1>
+            <p class="subtitle">Fill out the details below to push a new question to the users.</p>
+
+            <div class="form-card">
+                <form id="add-question-form">
+                    
+                    <div class="form-group">
+                        <label for="q-text">Question Text</label>
+                        <input type="text" id="q-text" placeholder="e.g., Will Team India win today's match?" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="q-category">Category</label>
+                            <select id="q-category" required>
+                                <option value="Sports">Sports</option>
+                                <option value="Crypto">Crypto</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Politics">Politics</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group half-width">
+                            <label for="q-endtime">End Date & Time</label>
+                            <input type="datetime-local" id="q-endtime" required>
+                        </div>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="option1">Option 1</label>
+                        <input type="text" id="option1" required/>
+
+                        <label for="option2">Option 2</label>
+                        <input type="text" id="option2" required />
+                    </div>
+                    <button type="submit" class="submit-btn">Publish Question</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+<script src="script.js"></script>
+<script src="admin-add-questions.js"></script>
+</body>
+</html>

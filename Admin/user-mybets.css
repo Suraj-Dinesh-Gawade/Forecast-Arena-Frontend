@@ -1,0 +1,48 @@
+#question-subtitle{
+    color:#b0b0b0;
+    margin-top:8px;
+    margin-bottom:25px;
+}
+
+.bet-card{
+    background:linear-gradient(135deg,#151515,#222);
+    border:1px solid #333;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.bet-card h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+.bet-card p{
+    color:#b0b0b0;
+    margin-bottom:10px;
+}
+
+.status{
+    display:inline-block;
+    background:#ffc107;
+    color:black;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:600;
+    margin-top:10px;
+}
+
+.pending{
+    background:#ffc107;
+    color:black;
+}
+
+.won{
+    background:#198754;
+    color:white;
+}
+
+.lost{
+    background:#dc3545;
+    color:white;
+}

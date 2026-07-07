@@ -1,0 +1,18 @@
+.profile-card{
+    background:linear-gradient(135deg,#151515,#222);
+    border:1px solid #333;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    margin-top:20px;
+}
+
+.profile-card h2{
+    color:white;
+    margin:15px 0;
+}
+
+.profile-card p{
+    color:#b0b0b0;
+    margin-bottom:10px;
+}

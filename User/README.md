@@ -1,0 +1,1 @@
+These is a prediction platform where user use there knowledge and predict on the questions provided by the admin and can gain prediction points and compete on leaderboard.It is under progress. NOT COMPLETED YET!

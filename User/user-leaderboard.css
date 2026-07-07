@@ -1,0 +1,296 @@
+/* =========================================================================
+   Forecast Arena - Leaderboard Gamified CSS Stylesheet
+   ========================================================================= */
+
+/* Overrides simpler containers with modern edge-to-edge layout transparency */
+.leaderboard-card {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.leaderboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    animation: cascadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================================
+   🥇 PODIUM SECTION DESIGN (Top 3 Players)
+   ========================================================================= */
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    margin: 30px 0 15px 0;
+    padding: 10px 0;
+}
+
+.podium-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 15px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    cursor: pointer;
+}
+
+/* 🏆 Interactive neon glow intensifies on hover */
+.podium-card:hover {
+    transform: translateY(-12px) scale(1.03);
+}
+
+/* 🥇 1st Place: Golden Sovereign Glow */
+.podium-card.first {
+    order: 2; /* Centered position */
+    min-height: 270px;
+    border: 2px solid #ffb703;
+    box-shadow: 0 15px 35px rgba(255, 183, 3, 0.18), 
+                inset 0 0 20px rgba(255, 183, 3, 0.05);
+    background: linear-gradient(180deg, #241c09 0%, #0a0a0a 100%);
+}
+.podium-card.first:hover {
+    box-shadow: 0 20px 45px rgba(255, 183, 3, 0.35), 
+                inset 0 0 25px rgba(255, 183, 3, 0.1);
+    border-color: #ffd166;
+}
+
+/* 🥈 2nd Place: Silver-Cyan Duelist Glow */
+.podium-card.second {
+    order: 1; /* Left position */
+    min-height: 225px;
+    border: 1.5px solid #00b4d8;
+    box-shadow: 0 10px 28px rgba(0, 180, 216, 0.15), 
+                inset 0 0 15px rgba(0, 180, 216, 0.04);
+    background: linear-gradient(180deg, #091a24 0%, #0a0a0a 100%);
+}
+.podium-card.second:hover {
+    box-shadow: 0 18px 40px rgba(0, 180, 216, 0.3), 
+                inset 0 0 20px rgba(0, 180, 216, 0.08);
+    border-color: #90e0ef;
+}
+
+/* 🥉 3rd Place: Volcanic Bronze Shield Glow */
+.podium-card.third {
+    order: 3; /* Right position */
+    min-height: 205px;
+    border: 1.5px solid #e27d60;
+    box-shadow: 0 8px 24px rgba(226, 125, 96, 0.12), 
+                inset 0 0 15px rgba(226, 125, 96, 0.04);
+    background: linear-gradient(180deg, #24140f 0%, #0a0a0a 100%);
+}
+.podium-card.third:hover {
+    box-shadow: 0 15px 35px rgba(226, 125, 96, 0.25), 
+                inset 0 0 20px rgba(226, 125, 96, 0.08);
+    border-color: #ff9f80;
+}
+
+/* Podium Badges and Texts */
+.podium-crown {
+    font-size: 3.2rem;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+    animation: floatSymbol 4s ease-in-out infinite;
+}
+
+/* Offset the float animations so all three bounce out of sync cleanly */
+.podium-card.second .podium-crown {
+    animation-delay: -1.3s;
+}
+.podium-card.third .podium-crown {
+    animation-delay: -2.6s;
+}
+
+.podium-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 4px 0;
+    text-align: center;
+    letter-spacing: -0.3px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.podium-coins {
+    font-size: 1.05rem;
+    color: #ffb703;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.podium-step-label {
+    position: absolute;
+    bottom: -12px;
+    background: #ffb703;
+    color: #000000;
+    font-weight: 850;
+    padding: 3px 14px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.podium-card.second .podium-step-label {
+    background: #00b4d8;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 180, 216, 0.25);
+}
+
+.podium-card.third .podium-step-label {
+    background: #e27d60;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(226, 125, 96, 0.25);
+}
+
+
+/* =========================================================================
+   📋 HIGH-END COMPETITIVE PLAYER CARD ROWS (Ranks 4+)
+   ========================================================================= */
+.ranked-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+/* The redesigned dynamic player card */
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: linear-gradient(90deg, #181818 0%, #1f1f1f 100%);
+    border: 1px solid #282828;
+    border-left: 4px solid #3e3e3e; /* Smooth neutral rank accent line */
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Beautiful micro-interaction glowing transitions on hover */
+.list-row:hover {
+    transform: translateX(8px);
+    background: linear-gradient(90deg, #1f1f1f 0%, #282828 100%);
+    border-color: #4a4a4a;
+    border-left-color: #ffb703; /* Active gold accent line on mouse hover */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 
+                0 8px 20px rgba(0, 0, 0, 0.3), 
+                0 0 15px rgba(255, 183, 3, 0.05);
+}
+
+.list-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* High-tech rank ID circular badges */
+.list-rank-badge {
+    background: #111111;
+    border: 1px solid #333333;
+    color: #888888;
+    font-size: 0.95rem;
+    font-weight: 800;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.list-row:hover .list-rank-badge {
+    border-color: #ffb703;
+    color: #ffb703;
+    box-shadow: 0 0 8px rgba(255, 183, 3, 0.25);
+}
+
+.list-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #e0e0e0;
+    letter-spacing: -0.1px;
+    transition: color 0.3s ease;
+}
+
+.list-row:hover .list-name {
+    color: #ffffff;
+}
+
+/* Dynamic dynamic gold balances output alignment */
+.list-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 183, 3, 0.05);
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 183, 3, 0.1);
+    transition: all 0.3s ease;
+}
+
+.list-row:hover .list-right {
+    background: rgba(255, 183, 3, 0.1);
+    border-color: rgba(255, 183, 3, 0.25);
+    box-shadow: 0 4px 10px rgba(255, 183, 3, 0.05);
+}
+
+.list-right span {
+    font-weight: 700;
+    color: #ffb703;
+    font-size: 1.1rem;
+    letter-spacing: 0.2px;
+}
+
+.coin-icon {
+    font-size: 1.15rem;
+    animation: spinSlow 8s linear infinite;
+}
+
+/* =========================================================================
+   💥 ENERGETIC ANIMATIONS
+   ========================================================================= */
+@keyframes cascadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Floating effect for Arena symbols */
+@keyframes floatSymbol {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}

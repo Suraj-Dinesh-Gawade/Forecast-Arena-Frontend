@@ -1,0 +1,133 @@
+/* Specific styling for Admin Data Tables */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents ugly double browser-window scroll bars */
+}
+
+/* Ensure border boxes are calculated properly */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 2. Container takes exactly 100% of the screen height */
+#container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* 3. Sidebar remains locked with its own scroll safety zone */
+#sidebar {
+    width: 250px;
+    height: 100%;
+    flex-shrink: 0; /* Keeps sidebar from shrinking when table is wide */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto; /* FIXED: If screen height is small, menu items scroll cleanly instead of getting cut off! */
+}
+
+/* 4. Main workspace scrolls internally and independently */
+#main-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto; /* FIXED: Enables clean, smooth vertical scrolling for tables and forms */
+    padding: 30px;
+}
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.table-container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
+        -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on mobile browsers */
+
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 850px; /* Forces the horizontal scrollbar to appear */
+}
+.data-table th, 
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap; /* Prevents text from wrapping and breaking lines */
+}
+.data-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Status Badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.active-badge {
+    background-color: #e0f2fe; /* Light blue */
+    color: #0284c7; /* Dark blue text */
+}
+
+.settled-badge {
+    background-color: #dcfce7; /* Light green */
+    color: #166534; /* Dark green text */
+}
+
+/* Action Buttons */
+.action-btn, .winner-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-right: 5px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.winop1{
+    background-color: green;
+}
+
+.winop2{
+    background-color: rgb(33, 158, 33);
+}
+
+.resolve-btn {
+    background-color: #2d5fff; /* Your primary blue */
+}
+
+.resolve-btn:hover {
+    background-color: #1a45cc;
+}
+
+.delete-btn {
+    background-color: #ef4444; /* Red for destructive actions */
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+}
+
+.view-btn {
+    background-color: #9ca3af; /* Gray for disabled state */
+    cursor: not-allowed;
+}
