@@ -1,59 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
     <link rel="stylesheet" href="userLayout.css" />
     <link rel="stylesheet" href="user-profile.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div id="container">
-        <div id="sidebar">
-
+      <div id="sidebar">
         <div id="logo">
-            <h2>Forecast Arena</h2>
+          <h2>Forecast Arena</h2>
         </div>
 
         <nav id="menu">
-            <a href="user-dashboard.html">Dashboard</a>
+          <a href="user-dashboard.html">Dashboard</a>
 
-            <a href="user-questions.html">Questions</a>
+          <a href="user-questions.html">Questions</a>
 
-            <a href="user-mybets.html">My Bets</a>
+          <a href="user-mybets.html">My Bets</a>
 
-            <a href="user-leaderboard.html">Leaderboard</a>
+          <a href="user-leaderboard.html">Leaderboard</a>
 
-            <a href="user-profile.html" class="active">Profile</a>
+          <a href="user-profile.html" class="active">Profile</a>
         </nav>
 
         <div id="logout-section">
-            <button id="logout-btn">Logout</button>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </div>
+      <div id="main-content">
+        <div class="profile-header">
+          <h1>Profile Hub</h1>
+          <p>
+            Manage your account, view competitive analytics, and track
+            achievements.
+          </p>
         </div>
 
+        <div class="profile-left-col">
+          <div class="profile-card" id="profile-card">
+            <div class="avatar" id="avatar-char">S</div>
+            <span class="active-pulse"></span>
+          </div>
+
+          <h2 id="username">Loading...</h2>
+
+          <div class="row-badge-container">
+            <div class="profile-row">
+              <span class="row-label">Rank</span>
+              <span class="row-val u_Rank" id="userrank">Loading...</span>
+            </div>
+            <div class="profile-row">
+              <span class="row-label">Balance</span>
+              <span class="row-val curr_coins" id="usercoins"
+                >0 <b id="coins">Coins</b></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-right-col">
+                    
+                    <!-- Stats Section -->
+                    <div class="performance-panel">
+                        <h2>Predictive Performance</h2>
+                        <div class="performance-grid">
+                            
+                            <!-- Visual Accuracy Wheel Card -->
+                            <div class="perf-card accuracy-card">
+                                <h3>Win Accuracy</h3>
+                                <div class="progress-ring-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring-bg" stroke="#1e293b" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                        <circle class="progress-ring-bar" id="accuracy-ring" stroke="#ffb703" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                                    </svg>
+                                    <div class="progress-text" id="u_Accuracy">0%</div>
+                                </div>
+                            </div>
+
+                            <!-- Fast stats counters -->
+                            <div class="stats-counter-stack">
+                                <div class="counter-card">
+                                    <span class="counter-title">Total Placed Predictions</span>
+                                    <h4 id="perf-total-bets">0</h4>
+                                </div>
+                                <div class="counter-card win-glow">
+                                    <span class="counter-title">Accuracy Rate State</span>
+                                    <h4 id="perf-status" style="color: #10b981;">Consistent</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Achievements Section -->
+                    <div class="performance-panel achievement-panel">
+                        <h2>Unlocked Badges</h2>
+                        <div class="achievements-showcase">
+                            
+                            <div class="badge-item locked" id="badge-sharpshooter" title="Achieve a win accuracy of 70% or higher with settled bets">
+                                <div class="badge-icon">🎯</div>
+                                <span>SharpShooter</span>
+                            </div>
+
+                            <div class="badge-item locked" id="badge-loyal" title="Place more that 10 total predictions in the arena">
+                                <div class="badge-icon">⚔️</div>
+                                <span>Loyal ForeCaster</span>
+                            </div>
+
+                            <div class="badge-item locked" id="badge-millionaire" title="Collect more than 5,000 Coins">
+                                <div class="badge-icon">💰</div>
+                                <span>Arena Millionaire</span>
+                            </div>
+
+                            <div class="badge-item locked" id="badge-ranked" title="Climb to Top 3 on the Leaderboard">
+                                <div class="badge-icon">👑</div>
+                                <span>Legend Status</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div id="main-content">
-        <h1>Profile</h1>
-
-<p id="question-subtitle">
-    Manage your account information.
-</p>
-
-<div class="profile-card">
-
-    <div class="avatar">
-        S
-    </div>
-
-    <h2 id="username">Suraj</h2>
-
-    <b id="userrankname">Rank- </b><b id="userrank">Rank #12</b><br />
-
-    <b id="usercoins">1250 Coins</b><b id="usercoinsname"> coins</b>
-
-</div>
-    </div>
-    </div>
+    <script src="script.js"></script>
     <script src="user-profile.js"></script>
-</body>
+  </body>
 </html>

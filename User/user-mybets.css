@@ -1,48 +1,159 @@
-#question-subtitle{
-    color:#b0b0b0;
-    margin-top:8px;
-    margin-bottom:25px;
+/* STREAMING_CHUNK:Setting up base typographic and subtitle properties... */
+#question-subtitle {
+color: #71717a;
+font-size: 0.95rem;
+margin-top: 8px;
+margin-bottom: 30px;
+font-weight: 500;
 }
 
-.bet-card{
-    background:linear-gradient(135deg,#151515,#222);
-    border:1px solid #333;
-    border-radius:18px;
-    padding:25px;
-    margin-bottom:20px;
+#bets-container {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 24px;
+margin-top: 15px;
+perspective: 1000px;
 }
 
-.bet-card h3{
-    color:white;
-    margin-bottom:15px;
+@media (max-width: 640px) {
+#bets-container {
+grid-template-columns: 1fr;
+}
 }
 
-.bet-card p{
-    color:#b0b0b0;
-    margin-bottom:10px;
+/* STREAMING_CHUNK:Designing premium glassmorphic bet cards... */
+.bet-card {
+background: linear-gradient(145deg, #121214 0%, #1a1a1f 100%) !important;
+border: 1px solid rgba(255, 255, 255, 0.05) !important;
+border-radius: 20px !important;
+padding: 26px !important;
+position: relative;
+overflow: hidden;
+box-shadow:
+0 10px 30px rgba(0, 0, 0, 0.3),
+inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+transition:
+transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+border-color 0.4s ease,
+box-shadow 0.4s ease !important;
 }
 
-.status{
-    display:inline-block;
-    background:#ffc107;
-    color:black;
-    padding:6px 12px;
-    border-radius:20px;
-    font-weight:600;
-    margin-top:10px;
+.bet-card.pending {
+border-left: 4px solid #ffb703 !important;
 }
 
-.pending{
-    background:#ffc107;
-    color:black;
+.bet-card.win {
+border-left: 4px solid #10b981 !important;
 }
 
-.won{
-    background:#198754;
-    color:white;
+.bet-card.lose {
+border-left: 4px solid #ef4444 !important;
 }
 
-.lost{
-    background:#dc3545;
-    color:white;
+.bet-card:hover {
+transform: translateY(-8px) scale(1.02) !important;
+}
+
+.bet-card.pending:hover {
+border-color: rgba(255, 183, 3, 0.3) !important;
+box-shadow:
+0 20px 40px rgba(0, 0, 0, 0.5),
+0 0 25px rgba(255, 183, 3, 0.12),
+inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.bet-card.win:hover {
+border-color: rgba(16, 185, 129, 0.3) !important;
+box-shadow:
+0 20px 40px rgba(0, 0, 0, 0.5),
+0 0 25px rgba(16, 185, 129, 0.12),
+inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.bet-card.lose:hover {
+border-color: rgba(239, 68, 68, 0.3) !important;
+box-shadow:
+0 20px 40px rgba(0, 0, 0, 0.5),
+0 0 25px rgba(239, 68, 68, 0.12),
+inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* STREAMING_CHUNK:Styling inner text variables, labels, and parameters... */
+.bet-card h3 {
+color: #ffffff !important;
+font-size: 1.25rem !important;
+font-weight: 750 !important;
+margin: 0 0 16px 0 !important;
+line-height: 1.4 !important;
+letter-spacing: -0.3px !important;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bet-card p {
+color: #94a3b8 !important;
+font-size: 0.95rem !important;
+margin: 8px 0 !important;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+padding-bottom: 6px;
+}
+
+.bet-card p strong {
+color: #64748b;
+font-weight: 600;
+text-transform: uppercase;
+font-size: 0.75rem;
+letter-spacing: 0.8px;
+}
+
+.bet-card b {
+color: #f1f5f9;
+font-weight: 700;
+}
+
+.prediction-val {
+color: #3b82f6 !important;
+font-weight: 800 !important;
+background: rgba(59, 130, 246, 0.1);
+padding: 2px 8px;
+border-radius: 6px;
+border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* STREAMING_CHUNK:Creating gamified glowing status badges... */
+.status {
+display: inline-flex !important;
+align-items: center;
+gap: 6px;
+padding: 6px 14px !important;
+border-radius: 12px !important;
+font-size: 0.8rem !important;
+font-weight: 800 !important;
+text-transform: uppercase !important;
+letter-spacing: 0.8px !important;
+margin-top: 15px !important;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.status.pending {
+background: rgba(255, 183, 3, 0.1) !important;
+color: #ffb703 !important;
+border: 1px solid rgba(255, 183, 3, 0.2) !important;
+box-shadow: 0 4px 12px rgba(255, 183, 3, 0.05) !important;
+}
+
+.status.won {
+background: rgba(16, 185, 129, 0.1) !important;
+color: #10b981 !important;
+border: 1px solid rgba(16, 185, 129, 0.2) !important;
+box-shadow: 0 4px 12px rgba(16, 185, 129, 0.05) !important;
+}
+
+.status.lost {
+background: rgba(239, 68, 68, 0.1) !important;
+color: #ef4444 !important;
+border: 1px solid rgba(239, 68, 68, 0.2) !important;
+box-shadow: 0 4px 12px rgba(239, 68, 68, 0.05) !important;
 }

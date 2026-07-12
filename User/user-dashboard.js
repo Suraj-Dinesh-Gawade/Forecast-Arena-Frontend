@@ -12,10 +12,20 @@ fetch(`http://localhost:8000/user/${userId}`)
     
     document.getElementById("proName").innerText = data.name;
     
-    let rankData = document.querySelectorAll('.u_Rank')
+     const avatarEl = document.querySelector("#dashboard-profile-card .avatar");
+        if (avatarEl && data.name) {
+            avatarEl.innerText = data.name.charAt(0).toUpperCase();
+        }
+
+    let rankData = document.querySelectorAll('.u_Rank');
         rankData.forEach(element => {
-            element.innerText = data.user_rank;
+            element.innerHTML = data.user_rank;
         });
+        
+    let rankDataProfile = document.querySelectorAll('.u_Rank_Profile');
+    rankDataProfile.forEach(element => {
+        element.innerHTML = `${data.user_rank} <span class="u_Rank_Name">Rank</span>`;
+    });
 
     document.getElementById("u_Accuracy").innerText = `${data.accuracy ?? 0}%`;
   

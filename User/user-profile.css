@@ -1,28 +1,76 @@
 /* =========================================================================
-   Forecast Arena - Premium High-End Profile Card Theme
+   Forecast Arena - High-End Profile Stylesheet
    ========================================================================= */
 
-/* targets both ID (#profile-card) and Class (.profile-card) for absolute safety */
-#profile-card, .profile-card {
-    background: linear-gradient(135deg, #111114 0%, #17171d 100%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 28px;
-    padding: 40px 24px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        inset 0 1px 1px rgba(255, 255, 255, 0.05);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
+/* Reset body system properties to fit the main app layout styling */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #09090b;
+    font-family: 'Poppins', sans-serif;
+    color: #f4f4f5;
 }
 
-/* Elegant top visual accent bar for futuristic gaming aesthetics */
-#profile-card::before, .profile-card::before {
+/* Header Text elements styling */
+.profile-header {
+    margin-bottom: 25px;
+}
+
+.profile-header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 5px 0;
+    letter-spacing: -0.5px;
+}
+
+.profile-header p {
+    color: #71717a;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* =========================================================================
+   📊 2-COLUMN PROFILE DESKTOP LAYOUT (Adaptive)
+   ========================================================================= */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 30px;
+    align-items: start;
+    margin-top: 15px;
+}
+
+@media (max-width: 1024px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    .profile-left-col {
+        max-width: 100%;
+    }
+}
+
+/* =========================================================================
+   👑 COLUMN 1: Player Passport Card (Sleek, No-Stretch, Floating)
+   ========================================================================= */
+.profile-left-col {
+    width: 100%;
+}
+
+.profile-card {
+    background: linear-gradient(145deg, #121214 0%, #1a1a1f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 45px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Futuristic top neon color band */
+.profile-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -30,122 +78,383 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ffb703);
-    opacity: 0.8;
 }
 
-#profile-card:hover, .profile-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 183, 3, 0.25);
-    box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        0 0 30px rgba(255, 183, 3, 0.05),
-        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+/* =========================================================================
+   🌀 SHIELDED CIRCULAR AVATAR (Prevents Horizontal Stretching)
+   ========================================================================= */
+.avatar-wrapper {
+    position: relative !important;
+    width: 110px !important;
+    height: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    min-height: 110px !important;
+    max-height: 110px !important;
+    margin: 0 auto 20px auto !important;
+    flex-shrink: 0 !important; /* Prevents flex compression */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/* 🌀 Interactive Cybernetic Avatar Ring */
-#profile-card .avatar, .profile-card .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #60a5fa 100%);
-    color: #ffffff;
-    font-size: 38px;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px auto;
-    position: relative;
-    z-index: 2;
-    border: 4px solid #111114;
-    box-shadow: 
-        0 0 0 3px #3b82f6,
-        0 12px 28px rgba(59, 130, 246, 0.4);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    user-select: none;
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s;
-}
-
-#profile-card:hover .avatar, .profile-card:hover .avatar {
-    transform: scale(1.08) rotate(8deg);
-    box-shadow: 
-        0 0 0 4px #ffb703,
-        0 15px 32px rgba(255, 183, 3, 0.3);
-}
-
-/* 🏷️ Profile Username */
-#profile-card h3, #profile-card h2, 
-.profile-card h3, .profile-card h2,
-#proName, #username {
-    font-size: 1.6rem !important;
-    font-weight: 800 !important;
-    color: #ffffff !important;
-    margin: 0 0 22px 0 !important;
-    letter-spacing: -0.5px !important;
-    text-transform: capitalize;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* 📋 FIXED: Adaptive Row Styling (Unifies elements horizontally) */
-#profile-card p, .profile-card p {
-    background: rgba(255, 255, 255, 0.02) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 14px !important;
-    padding: 14px 20px !important;
-    margin: 8px 0 !important;
-    width: 100% !important;
+/* Absolute lock on height, width, and circular aspect ratio */
+.profile-card .avatar {
+    width: 110px !important;
+    height: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    min-height: 110px !important;
+    max-height: 110px !important;
+    margin-left: 5em !important;
+    border-radius: 50% !important; /* Forces perfect circle */
+    aspect-ratio: 1 / 1 !important; /* Enforces equal bounds */
+    flex-shrink: 0 !important;
+    
+    /* Cosmic Dark Indigo & Royal Purple Gradient */
+    background: linear-gradient(135deg, #1e1b4b 0%, #311045 50%, #0f172a 100%) !important;
+    
+    /* Vibrant Gold Emblem text with glowing shadow mapping */
+    color: #ffb703 !important;
+    font-size: 42px !important;
+    font-weight: 900 !important;
     display: flex !important;
-    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* Layered Dual-Ring Neon Outer Border & Deep Inset Reflection Glow */
+    border: 4px solid #111114 !important;
+    box-sizing: border-box !important;
+    box-shadow:
+        0 0 0 2px rgba(255, 183, 3, 0.2),                     /* Subtle Gold Border Ring */
+        0 8px 32px rgba(139, 92, 246, 0.4),                    /* Deep Royal Purple Core Glow */
+        0 0 20px rgba(59, 130, 246, 0.3),                      /* Soft Neon Blue Accent Glow */
+        inset 0 4px 12px rgba(255, 255, 255, 0.15) !important; /* Premium Glass reflection */
+    text-shadow: 0 0 15px rgba(255, 183, 3, 0.7) !important;
+    user-select: none !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Interactive Cosmic Hover Animation */
+.profile-card:hover .avatar-wrapper {
+    transform: scale(1.08) rotate(6deg) !important;
+}
+
+.profile-card:hover .avatar {
+    background: linear-gradient(135deg, #2e1065 0%, #4c1d95 50%, #1e1b4b 100%) !important;
+    box-shadow:
+        0 0 0 3px #ffb703,                                     /* Solid glowing gold border */
+        0 12px 40px rgba(139, 92, 246, 0.6),                   /* Intense Purple Burst Glow */
+        0 0 30px rgba(59, 130, 246, 0.5),                      /* Intense Blue Burst Glow */
+        inset 0 4px 16px rgba(255, 255, 255, 0.25) !important;
+    text-shadow: 0 0 25px #ffffff !important;                  /* Glow turns white-hot gold */
+}
+
+/* Interactive green online pulse badge */
+.active-pulse {
+    position: absolute !important;
+    bottom: 4px !important;
+    right: 4px !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-color: #10b981 !important;
+    border: 3px solid #121214 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6) !important;
+    z-index: 10 !important;
+}
+
+/* Formatting username and passport statistics rows */
+.profile-card h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.5px;
+    text-transform: capitalize;
+}
+
+/* =========================================================================
+   💎 PREMIUM PASSPORT STATISTICS ROWS (Overhauled!)
+   ========================================================================= */
+.row-badge-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Slightly wider spacing for balanced layout */
+}
+
+.profile-row {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 16px !important;
+    padding: 16px 22px !important;
+    display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     box-sizing: border-box !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.01) !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-    
-    /* Left Label Styling */
-    color: #94a3b8 !important; 
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.02) !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Smooth row hover slide effects */
-#profile-card p:hover, .profile-card p:hover {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: rgba(255, 183, 3, 0.2) !important;
-    transform: translateX(4px);
+/* Row 1: Rank Specific Edge Border (Sleek Cybernetic Blue Highlight) */
+.profile-row:nth-child(1) {
+    border-left: 3px solid rgba(59, 130, 246, 0.6) !important;
 }
 
-/* 🎖️ Clean Row Metrics Overrides (Removes redundant split capsules) */
-.u_Rank, #userrank, #userrankname,
-.curr_coins, #usercoins, #usercoinsname {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    font-size: 1.1rem !important;
+/* Row 2: Balance Specific Edge Border (Sleek Championship Gold Highlight) */
+.profile-row:nth-child(2) {
+    border-left: 3px solid rgba(255, 183, 3, 0.6) !important;
+}
+
+/* Interactive Hover Aesthetics for Rows */
+.profile-row:hover {
+    transform: translateX(6px) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Glowing background washes matching their theme color on hover */
+.profile-row:nth-child(1):hover {
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    border-left-color: #3b82f6 !important;
+    box-shadow: 
+        0 8px 24px rgba(59, 130, 246, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.03) !important;
+}
+
+.profile-row:nth-child(2):hover {
+    border-color: rgba(255, 183, 3, 0.4) !important;
+    border-left-color: #ffb703 !important;
+    box-shadow: 
+        0 8px 24px rgba(255, 183, 3, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Label styling inside the row */
+.row-label {
+    color: #8f8f9e !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-family: 'Inter', sans-serif !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+}
+
+.profile-row:hover .row-label {
+    color: #e4e4e7 !important;
+}
+
+/* Metric value output styling */
+.row-val {
+    font-size: 1.15rem !important;
     font-weight: 800 !important;
-    text-shadow: none !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    display: inline-flex;
+    align-items: center;
 }
 
-/* Active Arena blue color for the Rank value */
-.u_Rank, #userrank {
-    color: #60a5fa !important; 
+/* Color codes for Rank and Coin values */
+#userrank {
+    color: #60a5fa !important;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
 }
 
-/* Golden color for Coins value */
-.curr_coins, #usercoins {
-    color: #ffb703 !important; 
+#usercoins {
+    color: #ffb703 !important;
+    text-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
 }
 
-/* Styled Coins bold tag */
 #coins {
-    color: rgba(255, 183, 3, 0.7) !important;
-    font-weight: 600 !important;
-    font-size: 0.9rem !important;
-    margin-left: 6px !important;
+    color: rgba(255, 183, 3, 0.6) !important;
+    font-weight: 600;
+    font-size: 0.8rem;
     text-transform: uppercase;
+    margin-left: 5px;
 }
+
+/* =========================================================================
+   📈 COLUMN 2: Arena Performance Panels & Badges
+   ========================================================================= */
+.performance-panel {
+    background: #121214;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.performance-panel h2 {
+    font-size: 1.3rem;
+    font-weight: 750;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 12px;
+}
+
+.performance-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .performance-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 🎯 Progress Accuracy Ring styling */
+.perf-card.accuracy-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+}
+
+.perf-card.accuracy-card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px 0;
+}
+
+.progress-ring-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Base progress ring animations */
+.progress-ring-bar {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-dasharray: 314.15; /* Circumference of r=50 circle */
+    stroke-dashoffset: 314.15;
+    transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-text {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 850;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+/* Counter card stacking */
+.stats-counter-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.counter-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.counter-card h4 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 5px 0 0 0;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.counter-title {
+    font-size: 0.85rem;
+    color: #71717a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================================================
+   🏅 GAMIFIED ACHIEVEMENT BADGES
+   ========================================================================= */
+.achievements-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.badge-item {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.badge-icon {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.badge-item span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+
+/* Hover highlights for unlocked medals */
+.badge-item.unlocked:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 183, 3, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+}
+
+.badge-item.unlocked:hover .badge-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.badge-item.unlocked span {
+    color: #e4e4e7;
+}
+
+/* Visual locks for unachieved states */
+.badge-item.locked {
+    opacity: 0.35;
+    background: rgba(0,0,0,0.2);
+    cursor: not-allowed;
+    border-style: dashed;
+}
+
+.badge-item.locked .badge-icon {
+    filter: grayscale(100%);
+}
+

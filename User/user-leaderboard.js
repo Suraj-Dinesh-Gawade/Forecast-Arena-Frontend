@@ -79,7 +79,7 @@ async function loadLeaderboard() {
                     <div class="list-row">
                         <div class="list-left">
                             <!-- Circular high-tech rank badge -->
-                            <div class="list-rank-badge">#${actualRank}</div>
+                            <div class="list-rank-badge">${actualRank}</div>
                             <span class="list-name">${player.name}</span>
                         </div>
                         <div class="list-right">
