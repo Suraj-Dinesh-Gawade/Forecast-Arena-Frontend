@@ -126,7 +126,7 @@ function handleProfileAchievementUnlocks(coins, rank, accuracy) {
 
     // B. Arena Millionaire Badge (Requires 5000+ coins)
     const milBadge = document.getElementById("badge-millionaire");
-    if (milBadge && coins >= 5000) {
+    if (milBadge && coins >= 1000000) {
         milBadge.classList.remove("locked");
         milBadge.classList.add("unlocked");
     }

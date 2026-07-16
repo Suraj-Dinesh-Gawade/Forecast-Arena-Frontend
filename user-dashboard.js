@@ -8,9 +8,22 @@ fetch(`http://localhost:8000/user/${userId}`)
 .then(response => response.json())
 .then(data => {
     document.getElementById("welcome-name").innerText =
-        `Welcome Back, ${data.name} 👋`;
+        `Welcome, ${data.name} 👋`;
     
     document.getElementById("proName").innerText = data.name;
+    
+// Automatically prints whatever message the backend generates
+if (data.status_message) {
+    const statusMsgEl = document.getElementById("status-msg");
+    if (statusMsgEl) {
+        statusMsgEl.innerText = data.status_message;
+        statusMsgEl.style.color = data.status_color || "#f59e0b"; // Yellow/orange warning alert
+    }
+} else {
+    // Hide or clear the status message if user is active and clean
+    const statusMsgEl = document.getElementById("status-msg");
+    if (statusMsgEl) statusMsgEl.innerText = "";
+    }
     
      const avatarEl = document.querySelector("#dashboard-profile-card .avatar");
         if (avatarEl && data.name) {

@@ -305,6 +305,9 @@ min-height: 380px;
 box-sizing: border-box;
 }
 
+#status-msg {
+    color: #facc15;
+}
 #dashboard-profile-card .avatar {
 width: 90px !important;
 height: 90px !important;

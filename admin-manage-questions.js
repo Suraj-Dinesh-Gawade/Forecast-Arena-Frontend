@@ -7,10 +7,14 @@ async function loadQuestions() {
 
     let question_Rows = "";
 
+      
     for (let data of questionsData) {
       let badgeClass = "";
       let buttonHTML = "";
 
+        const isSettled = (data.status === "Settled" || data.status === "settled");
+        const disabledAttr = isSettled ? "disabled" : "";
+        
       if (data.status === "Active" || data.status === "active") {
         badgeClass = "active-badge";
         buttonHTML = `<button class="action-btn resolve-btn" data-id="${data.q_id}">Resolve</button>`;
@@ -23,14 +27,14 @@ async function loadQuestions() {
                     <td>${data.q_id}</td>
                     <td>${data.question}</td>
                     <td>${data.Category}</td>
-                    <td><span class="badge ${badgeClass}">${data.status}</span></td>
+                    <td><span class="badge ${badgeClass}" data-status="${data.status}">${data.status}</span></td>
                     <td>
                         ${buttonHTML}
                         <button class="action-btn delete-btn" data-id="${data.q_id}">Delete</button>
                     </td>
                     <td>
-                        <button class="winner-btn winop1" data-id="${data.q_id}" data-winner="${data.Odd_One}">${data.Odd_One}</button>
-                        <button class="winner-btn winop2" data-id="${data.q_id}" data-winner="${data.Odd_Two}">${data.Odd_Two}</button>
+                        <button class="winner-btn winop1" data-id="${data.q_id}" data-winner="${data.Odd_One}" ${disabledAttr}>${data.Odd_One}</button>
+                        <button class="winner-btn winop2" data-id="${data.q_id}" data-winner="${data.Odd_Two}" ${disabledAttr}>${data.Odd_Two}</button>
                     </td>
                 </tr>
             `;
@@ -48,6 +52,7 @@ function attachButtonListeners() {
     const resolveButtons = document.querySelectorAll(".resolve-btn");
     const deleteButtons = document.querySelectorAll(".delete-btn");
     const winnerbuttons = document.querySelectorAll(".winner-btn");
+    const badgeStatus = document.querySelectorAll(".badge");
 
     for (let btn of resolveButtons) {
         btn.addEventListener("click", async () => {
@@ -84,6 +89,7 @@ function attachButtonListeners() {
                 const result = await response.json();
                 if (response.ok) {
                     loadQuestions();
+                    alert(result.message);
                 }
                 else {
                     alert("Error : "+result.Error);
@@ -121,7 +127,7 @@ function attachButtonListeners() {
                 console.error("Error while sending winner data : ", err);
             };
         });
-    };
+    };        
 };
 
 loadQuestions();
