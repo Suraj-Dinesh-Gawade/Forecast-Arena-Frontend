@@ -1,3 +1,9 @@
+const userId = localStorage.getItem("userId");
+
+if (!userId) {
+    window.location.href = "index.html";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Styling is now handled exclusively by "frontend/user-leaderboard.css"
     loadLeaderboard();
@@ -110,5 +116,6 @@ async function loadLeaderboard() {
 let logoutButton = document.getElementById('logout-btn');
 
 logoutButton.addEventListener('click', () => {
+    localStorage.removeItem("userId");
     window.location.href = "index.html";
 });

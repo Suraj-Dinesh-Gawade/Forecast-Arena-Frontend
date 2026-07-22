@@ -1,5 +1,9 @@
 const betsContainer = document.getElementById("bets-container");
-const userId = localStorage.getItem("userId") || 1; // Fallback to user ID 1 if not logged in
+const userId = localStorage.getItem("userId");
+
+if (!userId) {
+    window.location.href = "index.html";
+}
 
 async function loadUserBets() {
     if (!betsContainer) return;
@@ -72,6 +76,7 @@ async function loadUserBets() {
 let logoutButton = document.getElementById('logout-btn');
 
 logoutButton.addEventListener('click', () => {
+    localStorage.removeItem("userId");
     window.location.href = "index.html";
 });
 

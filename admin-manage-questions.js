@@ -1,8 +1,22 @@
+const userRole = localStorage.getItem("userRole");
+
+if (userRole !== 'admin') {
+    // Redirect them to login if they aren't an admin
+    window.location.href = "../index.html"; 
+}
+
+const adminHeaders = {
+    "Content-Type": "application/json",
+    "role": "admin"
+};
+
 const tableBody = document.getElementById("questions-table-body");
 
 async function loadQuestions() {
   try {
-    const response = await fetch("http://localhost:8000/ManageQuestions");
+      const response = await fetch("http://localhost:8000/ManageQuestions", {
+        headers: adminHeaders
+    });
     const questionsData = await response.json();
 
     let question_Rows = "";
@@ -61,6 +75,7 @@ function attachButtonListeners() {
             
     try {
         const response = await fetch(`http://localhost:8000/ResolveQuestions/${questionId}`, {
+            headers: adminHeaders,
             method: "PUT"
         });
 
@@ -84,6 +99,7 @@ function attachButtonListeners() {
 
             try {
                 const response = await fetch(`http://localhost:8000/DeleteQuestions/${questionId}`, {
+                    headers: adminHeaders,
                     method: "DELETE"
                 });
                 const result = await response.json();
@@ -110,7 +126,7 @@ function attachButtonListeners() {
             try {
                 const response = await fetch('http://localhost:8000/AddWinnerData', {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { "Content-Type": "application/json", "role" : "admin" },
                     body: JSON.stringify({
                         qId: questionId,
                         winnervalue: winnerVal
@@ -131,3 +147,8 @@ function attachButtonListeners() {
 };
 
 loadQuestions();
+
+const logoutButton = document.getElementById('logout-btn');
+logoutButton.addEventListener('click', async () => {
+    window.location.href = "index.html";
+});

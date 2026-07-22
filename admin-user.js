@@ -1,3 +1,15 @@
+const userRole = localStorage.getItem("userRole");
+
+if (userRole !== 'admin') {
+    // Redirect them to login if they aren't an admin
+    window.location.href = "../index.html"; 
+}
+
+const adminHeaders = {
+    "Content-Type": "application/json",
+    "role": "admin"
+};
+
 const searchInput = document.getElementById('user-search');
 const tableBody = document.getElementById('user-table-body');
 
@@ -5,7 +17,9 @@ let allUsers = [];
 
 async function loadUser() {
     try {
-        const response = await fetch('http://localhost:8000/UserData');
+        const response = await fetch('http://localhost:8000/UserData', {
+            headers: adminHeaders
+        });
         const userData = await response.json();
 
         allUsers = userData; // Store the original list in our global cache
@@ -89,6 +103,7 @@ function attachButtonListeners() {
 
             try {
                 const response = await fetch(`http://localhost:8000/WarnUser/${userId}`, {
+                    headers: adminHeaders,
                     method: "PUT"
                 });
 
@@ -113,6 +128,7 @@ function attachButtonListeners() {
 
             try {
                 const response = await fetch(`http://localhost:8000/SuspendUser/${userId}`, {
+                    headers: adminHeaders,
                     method: "PUT"
                 });
                 const result = await response.json();
@@ -136,6 +152,7 @@ function attachButtonListeners() {
 
             try {
                 const response = await fetch(`http://localhost:8000/ActivateUser/${userId}`, {
+                    headers: adminHeaders,
                     method: "PUT"
                 });
 
@@ -156,3 +173,8 @@ function attachButtonListeners() {
 };
 
 loadUser();
+
+const logoutButton = document.getElementById('logout-btn');
+logoutButton.addEventListener('click', async () => {
+    window.location.href = "index.html";
+});

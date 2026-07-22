@@ -1,43 +1,306 @@
-.labels, .login_labels{
-    font-family: fantasy;
-    font-weight: 100;
+/* STREAMING_CHUNK: Importing high-end fonts and setting up root variables */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', 'Inter', sans-serif;
 }
 
-#name, #username, #password, #Lusername, #Lpassword{
-    border: 2px solid black;
-    border-radius: 7px;
-    font-family: monospace;
-    background-color: rgb(116, 253, 255);
-}
-
-#r_btn{
-    border: 2px solid yellow;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    font-family: monospace;
-}
-
-#l_btn{
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: yellow;
-    color: rgb(22, 12, 71);
-    font-family: monospace;
-}
-
-#form_Div{
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #030206;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 8%;
+    gap: 16px;
+    position: relative;
+    
+    background-image: linear-gradient(135deg, rgba(3, 2, 6, 0.8) 0%, rgba(10, 8, 16, 0.4) 50%, rgba(3, 2, 6, 0.8) 100%),
+                      url('regi_logi.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#login_Div{
-    display: none;
+body::before {
+content: '';
+position: absolute;
+top: 10%;
+left: 5%;
+width: 350px;
+height: 350px;
+background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 70%);
+border-radius: 50%;
+z-index: 1;
+pointer-events: none;
 }
 
-#form_Names_Div{
-    display: flex;
+body::after {
+content: '';
+position: absolute;
+bottom: 10%;
+left: 20%;
+width: 400px;
+height: 400px;
+/* Warm golden glow matching your glowing amber prediction nodes */
+background: radial-gradient(circle, rgba(251, 133, 0, 0.08) 0%, rgba(251, 133, 0, 0) 70%);
+border-radius: 50%;
+z-index: 1;
+pointer-events: none;
 }
 
-#register_Form_Name{
-    margin-right: 30px;
+#form_Div {
+width: 100%;
+max-width: 420px;
+background: rgba(10, 8, 16, 0.55);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.06);
+border-radius: 24px;
+padding: 34px 35px;
+box-shadow:
+0 25px 60px -15px rgba(0, 0, 0, 0.8),
+inset 0 1px 1px rgba(255, 255, 255, 0.04);
+z-index: 10;
+display: flex;
+flex-direction: column;
+
+height: auto !important;
+min-height: unset !important;
+flex-shrink: 0;
+
+animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Top Horizontal Navigation Tab Bar */
+#form_Names_Div {
+display: flex;
+justify-content: center;
+gap: 10px;
+background: rgba(10, 8, 16, 0.5);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.05);
+padding: 6px;
+border-radius: 14px;
+z-index: 10;
+width: 100%;
+max-width: 420px;
+height: auto !important;
+min-height: unset !important;
+flex-shrink: 0;
+box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+animation: cardFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#register_Form_Name, #login_Form_Name {
+flex: 1;
+text-align: center;
+padding: 10px 0;
+font-size: 0.95rem;
+font-weight: 700;
+color: #94a3b8;
+cursor: pointer;
+border-radius: 10px;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+user-select: none;
+margin: 0;
+}
+
+#register_Form_Name:hover, #login_Form_Name:hover {
+color: #ffffff;
+background: rgba(255, 255, 255, 0.03);
+}
+
+#register_Form_Name:active, #login_Form_Name:active {
+transform: scale(0.97);
+}
+
+/* STREAMING_CHUNK: Custom input styling with glow focus effects */
+.labels, .login_labels {
+font-size: 0.75rem;
+color: #94a3b8;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1.5px;
+margin-bottom: 8px;
+display: block;
+}
+
+#name, #username, #password, #Lusername, #Lpassword {
+width: 100%;
+padding: 12px 18px;
+border: 1px solid rgba(255, 255, 255, 0.06);
+border-radius: 12px;
+font-size: 0.95rem;
+font-weight: 500;
+color: #ffffff;
+background-color: rgba(0, 0, 0, 0.25); /* Ultra dark translucent fill */
+outline: none;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+margin-bottom: 20px;
+}
+
+#name::placeholder, #username::placeholder, #password::placeholder,
+#Lusername::placeholder, #Lpassword::placeholder {
+color: #4b5563;
+font-weight: 500;
+}
+
+/* Cyan focus highlights for register inputs (matches holographic HUD) */
+#name:focus, #username:focus, #password:focus {
+border-color: #6366f1;
+background-color: rgba(99, 102, 241, 0.04);
+box-shadow:
+0 0 0 4px rgba(99, 102, 241, 0.15),
+inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Gold/amber focus highlights for login inputs (matches prediction nodes) */
+#Lusername:focus, #Lpassword:focus {
+border-color: #ffb703;
+background-color: rgba(255, 183, 3, 0.04);
+box-shadow:
+0 0 0 4px rgba(255, 183, 3, 0.15),
+inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* STREAMING_CHUNK: High-contrast action buttons styling */
+#r_btn, #l_btn {
+width: 100%;
+padding: 14px;
+border: none;
+border-radius: 12px;
+font-size: 0.95rem;
+font-weight: 800;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-top: 8px;
+}
+
+/* Deep Mystic Cosmic Blue (Register Action) */
+#r_btn {
+background: linear-gradient(135deg, #1d4ed8 0%, #6366f1 100%);
+color: #ffffff;
+box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+#r_btn:hover {
+transform: translateY(-2px);
+background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* Radiant Arena Gold (Login Action) */
+#l_btn {
+background: linear-gradient(135deg, #fb8500 0%, #ffb703 100%);
+color: #030206;
+box-shadow: 0 4px 20px rgba(251, 133, 0, 0.25);
+border: 1px solid rgba(251, 133, 0, 0.2);
+}
+
+#l_btn:hover {
+transform: translateY(-2px);
+background: linear-gradient(135deg, #ffb703 0%, #ffd166 100%);
+box-shadow: 0 8px 25px rgba(251, 133, 0, 0.4);
+}
+
+#r_btn:active, #l_btn:active {
+transform: translateY(0px);
+}
+
+#register_Div, #login_Div {
+animation: fadeReveal 0.4s ease;
+}
+
+#login_Div {
+display: none;
+}
+
+br {
+display: none;
+}
+
+@media (max-width: 768px) {
+html, body {
+align-items: center;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+#form_Div, #form_Names_Div {
+max-width: 100%; /* Fully fluid on smaller screens */
+}
+}
+
+/* Keyframe Animations */
+@keyframes cardFadeIn {
+from {
+opacity: 0;
+transform: translateX(-30px) scale(0.98);
+}
+to {
+opacity: 1;
+transform: translateX(0) scale(1);
+}
+}
+
+@keyframes fadeReveal {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+@media (max-width: 768px) {
+    /* 1. Center everything on mobile */
+    html, body {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* 2. Fluid form container */
+    #form_Div, #form_Names_Div {
+        width: 90%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* 3. Prevent iOS/Android auto-zoom on form taps */
+    input, button {
+        font-size: 16px !important;
+    }
+
+    /* 4. Perfectly aligned inputs and buttons */
+    #name, #username, #password, #Lusername, #Lpassword {
+        margin-bottom: 16px;
+    }
+
+    #r_btn, #l_btn {
+        width: 100%;
+        padding: 14px 18px; /* Ensure padding matches inputs for visual alignment */
+        margin-top: 10px;
+        box-sizing: border-box; /* Ensures padding doesn't push the button width out */
+    }
+
+    /* 5. Tighten up the spacing */
+    #form_Names_Div {
+        margin-bottom: 20px;
+    }
 }

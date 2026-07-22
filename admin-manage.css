@@ -131,3 +131,65 @@ html, body {
     background-color: #9ca3af; /* Gray for disabled state */
     cursor: not-allowed;
 }
+@media (max-width: 768px) {
+    /* 1. Unlock document scrolling */
+    html, body {
+        overflow: auto; 
+        height: auto;
+    }
+
+    #container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    #main-content {
+        padding: 15px;
+        overflow-y: visible;
+    }
+
+    /* 2. Transform the table into a stacked card layout */
+    .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr {
+        display: block;
+        width: 100%;
+        min-width: auto;
+    }
+
+    .data-table thead {
+        display: none; /* Hide table headers on mobile */
+    }
+
+    .data-table tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    .data-table td {
+        padding: 5px 0;
+        text-align: left;
+        white-space: normal;
+    }
+
+    /* 3. Keep buttons in 2-pair grid inside the card */
+    .settle-buttons-group {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    /* Stack the Resolve/Delete buttons below the grid */
+    .action-btn, .winner-btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

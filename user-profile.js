@@ -1,4 +1,8 @@
-const userId = localStorage.getItem("userId") || 1;
+const userId = localStorage.getItem("userId")
+
+if (!userId) {
+    window.location.href = "index.html";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     loadUserProfile();
@@ -92,8 +96,28 @@ async function loadPredictionStatistics() {
             }
         }
 
-        // Dynamic Badge Lock Handler based on total prediction counts
-        handleBetCountAchievementUnlocks(totalBets);
+        // 🌟 ADDED: Logic to update persistent badges from backend data
+        if (data.badges) {
+            const badgeMap = {
+                sharpshooter: "badge-sharpshooter",
+                tycoon: "badge-tycoon",
+                ranked: "badge-ranked",
+                loyal: "badge-loyal"
+            };
+
+            for (const [key, isUnlocked] of Object.entries(data.badges)) {
+                const badgeEl = document.getElementById(badgeMap[key]);
+                if (badgeEl) {
+                    if (isUnlocked) {
+                        badgeEl.classList.remove("locked");
+                        badgeEl.classList.add("unlocked");
+                    } else {
+                        badgeEl.classList.add("locked");
+                        badgeEl.classList.remove("unlocked");
+                    }
+                }
+            }
+        }
 
     } catch (err) {
         console.error("Error pulling betting count statistics:", err);
@@ -115,44 +139,12 @@ function setProgressRing(percent) {
 
 // 4. ACHIEVEMENTS SYSTEM STATE MODIFIERS
 
-// Handles unlocks based on profile values (Coins, Rank, and Win Accuracy)
-function handleProfileAchievementUnlocks(coins, rank, accuracy) {
-    // A. Sharpshooter Badge (Requires Accuracy >= 70%)
-    const sharpBadge = document.getElementById("badge-sharpshooter");
-    if (sharpBadge && accuracy >= 70) {
-        sharpBadge.classList.remove("locked");
-        sharpBadge.classList.add("unlocked");
-    }
-
-    // B. Arena Millionaire Badge (Requires 5000+ coins)
-    const milBadge = document.getElementById("badge-millionaire");
-    if (milBadge && coins >= 1000000) {
-        milBadge.classList.remove("locked");
-        milBadge.classList.add("unlocked");
-    }
-
-    // C. Legend Status Badge (Requires Rank 3 or higher)
-    const rankBadge = document.getElementById("badge-ranked");
-    if (rankBadge && rank <= 3) {
-        rankBadge.classList.remove("locked");
-        rankBadge.classList.add("unlocked");
-    }
-}
-
-// Handles unlocks based on prediction count statistics
-function handleBetCountAchievementUnlocks(totalBets) {
-    // D. Loyal Forecaster Badge (Requires Total Predictions > 10)
-    const loyalBadge = document.getElementById("badge-loyal");
-    if (loyalBadge && totalBets > 10) {
-        loyalBadge.classList.remove("locked");
-        loyalBadge.classList.add("unlocked");
-    }
-}
 
 // Safe Logout Button
 let logoutButton = document.getElementById('logout-btn');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
+        localStorage.removeItem("userId");
         window.location.href = "index.html";
     });
 }
