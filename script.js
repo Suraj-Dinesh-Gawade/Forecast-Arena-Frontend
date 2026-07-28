@@ -6,7 +6,7 @@ let registerButton = document.getElementById("r_btn");
 if (registerButton) {
   registerButton.addEventListener("click", async (e) => {
     e.preventDefault();
-
+    const secretKey = document.getElementById("secret-key").value;
     const response = await fetch("http://localhost:8000/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -14,6 +14,7 @@ if (registerButton) {
         name: Name.value,
         username: Username.value,
         password: Password.value,
+        secretKey: secretKey,
       }),
     });
     const resData = await response.json();
@@ -103,3 +104,33 @@ loginButton.addEventListener("click", async (e) => {
     alert("⚠️ Connection failed. Ensure your server is active on port 8000.");
   }
 });
+
+// Forgot Password System
+const forgotPassTrigger = document.getElementById("forgot-password-trigger");
+if (forgotPassTrigger) {
+    forgotPassTrigger.addEventListener("click", async () => {
+        const username = prompt("Enter your username:");
+        if (!username) return;
+
+        const secretKey = prompt("Enter your Secret Key (WARNING: If you forget this, account recovery is manual):");
+        if (!secretKey) return;
+
+      const email = prompt("Enter your email address (where admin will send password.You can change it later)");
+      if (!email) return;
+
+        try {
+            const response = await fetch('http://localhost:8000/request-password-reset', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, secretKey, email })
+            });
+
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.Error || "Failed to submit request");
+
+            alert(data.message);
+        } catch (err) {
+            alert(err.message);
+        }
+    });
+}

@@ -1,144 +1,191 @@
 const userId = localStorage.getItem("userId");
 
 if (!userId) {
-    window.location.href = "index.html";
-};
+  window.location.href = "index.html";
+}
 
 fetch(`http://localhost:8000/user/${userId}`)
-.then(response => response.json())
-.then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     document.getElementById("welcome-name").innerText =
-        `Welcome, ${data.name} 👋`;
-    
+      `Welcome, ${data.name} 👋`;
+
     document.getElementById("proName").innerText = data.name;
-    
-// Automatically prints whatever message the backend generates
-if (data.status_message) {
-    const statusMsgEl = document.getElementById("status-msg");
-    if (statusMsgEl) {
+
+    // Automatically prints whatever message the backend generates
+    if (data.status_message) {
+      const statusMsgEl = document.getElementById("status-msg");
+      if (statusMsgEl) {
         statusMsgEl.innerText = data.status_message;
         statusMsgEl.style.color = data.status_color || "#f59e0b"; // Yellow/orange warning alert
+      }
+    } else {
+      // Hide or clear the status message if user is active and clean
+      const statusMsgEl = document.getElementById("status-msg");
+      if (statusMsgEl) statusMsgEl.innerText = "";
     }
-} else {
-    // Hide or clear the status message if user is active and clean
-    const statusMsgEl = document.getElementById("status-msg");
-    if (statusMsgEl) statusMsgEl.innerText = "";
-    }
-    
-     const avatarEl = document.querySelector("#dashboard-profile-card .avatar");
-        if (avatarEl && data.name) {
-            avatarEl.innerText = data.name.charAt(0).toUpperCase();
-        }
 
-    let rankData = document.querySelectorAll('.u_Rank');
-        rankData.forEach(element => {
-            element.innerHTML = data.user_rank;
-        });
-        
-    let rankDataProfile = document.querySelectorAll('.u_Rank_Profile');
-    rankDataProfile.forEach(element => {
-        element.innerHTML = `${data.user_rank} <span class="u_Rank_Name">Rank</span>`;
+    const avatarEl = document.querySelector("#dashboard-profile-card .avatar");
+    if (avatarEl && data.name) {
+      avatarEl.innerText = data.name.charAt(0).toUpperCase();
+    }
+
+    let rankData = document.querySelectorAll(".u_Rank");
+    rankData.forEach((element) => {
+      element.innerHTML = data.user_rank;
+    });
+
+    let rankDataProfile = document.querySelectorAll(".u_Rank_Profile");
+    rankDataProfile.forEach((element) => {
+      element.innerHTML = `${data.user_rank} <span class="u_Rank_Name">Rank</span>`;
     });
 
     document.getElementById("u_Accuracy").innerText = `${data.accuracy ?? 0}%`;
-  
-    let coins = document.getElementsByClassName('curr_coins');
+
+    let coins = document.getElementsByClassName("curr_coins");
     for (let coin of coins) {
-        if (coin.querySelector('#coins')) {
-            coin.innerHTML = `${data.coins} <b id="coins">Coins</b>`;
-        }
-        else {
-            coin.innerText = data.coins;
-        }
-    }; 
-})
-.catch(err => {
+      if (coin.querySelector("#coins")) {
+        coin.innerHTML = `${data.coins} <b id="coins">Coins</b>`;
+      } else {
+        coin.innerText = data.coins;
+      }
+    }
+  })
+  .catch((err) => {
     console.log("Error loading user profile : ", err);
-});
+  });
 
 fetch(`http://localhost:8000/TotalBets/${userId}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        document.getElementById("t_Bets").innerText = data.total_bets ?? 0;
-    }).catch(err => {
-        console.log("Error loading user prediction statistics : ", err);
-    });
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    document.getElementById("t_Bets").innerText = data.total_bets ?? 0;
+  })
+  .catch((err) => {
+    console.log("Error loading user prediction statistics : ", err);
+  });
 
-// Logout Button 
+// Logout Button
 fetch("http://localhost:8000/LatestQuestion")
-    .then(response => {
-        if (!response.ok) throw new Error("Network error loading featured market.");
-        return response.json();
-    })
-    .then(data => {
-        const questionTextEl = document.getElementById("latestQue");
-        const timerElement = document.getElementById("countdown-timer");
+  .then((response) => {
+    if (!response.ok) throw new Error("Network error loading featured market.");
+    return response.json();
+  })
+  .then((data) => {
+    const questionTextEl = document.getElementById("latestQue");
+    const timerElement = document.getElementById("countdown-timer");
 
-        if (data.noQuestions) {
-            if (questionTextEl) questionTextEl.innerText = "No featured matches running right now. Check back soon!";
-            if (timerElement) {
-                timerElement.innerText = "Closed";
-                timerElement.style.color = "#888";
-            }
-            return;
-        }
-        
-        if (questionTextEl) questionTextEl.innerText = data.question;
-        
-        // Start the dynamic timer countdown!
-        startCountdown(data.End_Time || data.end_time);
-    })
-    .catch(err => {
-        console.warn(err.message);
-        const questionTextEl = document.getElementById("latestQue"); // FIXED: Unified ID target to prevent undefined updates
-        const timerElement = document.getElementById("countdown-timer");
-        if (questionTextEl) questionTextEl.innerText = "No featured matches running right now. Check back soon!";
-        if (timerElement) timerElement.innerText = "Closed";
-    });
+    if (data.noQuestions) {
+      if (questionTextEl)
+        questionTextEl.innerText =
+          "No featured matches running right now. Check back soon!";
+      if (timerElement) {
+        timerElement.innerText = "Closed";
+        timerElement.style.color = "#888";
+      }
+      return;
+    }
+
+    if (questionTextEl) questionTextEl.innerText = data.question;
+
+    // Start the dynamic timer countdown!
+    startCountdown(data.End_Time || data.end_time);
+  })
+  .catch((err) => {
+    console.warn(err.message);
+    const questionTextEl = document.getElementById("latestQue"); // FIXED: Unified ID target to prevent undefined updates
+    const timerElement = document.getElementById("countdown-timer");
+    if (questionTextEl)
+      questionTextEl.innerText =
+        "No featured matches running right now. Check back soon!";
+    if (timerElement) timerElement.innerText = "Closed";
+  });
 
 // Dynamic Countdown Engine
 function startCountdown(endTimeString) {
-    const timerElement = document.getElementById("countdown-timer");
-    if (!timerElement || !endTimeString) return;
+  const timerElement = document.getElementById("countdown-timer");
+  if (!timerElement || !endTimeString) return;
 
-    const targetTime = new Date(endTimeString).getTime();
+  const targetTime = new Date(endTimeString).getTime();
 
-    const interval = setInterval(() => {
-        const currentTime = new Date().getTime();
-        const difference = targetTime - currentTime;
+  const interval = setInterval(() => {
+    const currentTime = new Date().getTime();
+    const difference = targetTime - currentTime;
 
-        // If the countdown is finished, stop the timer
-        if (difference <= 0) {
-            clearInterval(interval);
-            timerElement.innerText = "Prediction Closed!";
-            timerElement.style.color = "#dc3545"; // Red color indicator
-            return;
-        }
+    // If the countdown is finished, stop the timer
+    if (difference <= 0) {
+      clearInterval(interval);
+      timerElement.innerText = "Prediction Closed!";
+      timerElement.style.color = "#dc3545"; // Red color indicator
+      return;
+    }
 
-        // Calculate Days, Hours, Minutes, and Seconds left
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    // Calculate Days, Hours, Minutes, and Seconds left
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    );
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        // Build a readable time-remaining string
-        if (days > 0) {
-            timerElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
-        } else {
-            timerElement.innerText = `${hours}h ${minutes}m ${seconds}s left`;
-        }
-    }, 1000);
+    // Build a readable time-remaining string
+    if (days > 0) {
+      timerElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+    } else {
+      timerElement.innerText = `${hours}h ${minutes}m ${seconds}s left`;
+    }
+  }, 1000);
 }
 
 // 4. SAFE LOGOUT BUTTON
 // FIXED: Wrapped inside an absolute null safety check so it doesn't block the fetches below it
 
-const logoutButton = document.getElementById('logout-btn');
+const logoutButton = document.getElementById("logout-btn");
 
 if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem("userId");
-        window.location.href = "index.html"; 
-    });
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem("userId");
+    window.location.href = "index.html";
+  });
+}
+
+// Password changing logic
+const changePassBtn = document.getElementById("submit-change-pass");
+if (changePassBtn) {
+  changePassBtn.addEventListener("click", async () => {
+    const oldPassword = document.getElementById("old-pass").value;
+    const newPassword = document.getElementById("new-pass").value;
+    const userId = localStorage.getItem("userId"); // Retrieved from active session
+
+    if (!oldPassword || !newPassword) {
+      alert("Please fill in both fields.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/change-password", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, oldPassword, newPassword }),
+      });
+
+      const data = await response.json();
+      if (!response.ok)
+        throw new Error(data.Error || "Failed to update password");
+
+      alert(data.message);
+      document.getElementById("old-pass").value = "";
+      document.getElementById("new-pass").value = "";
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+}
+
+// 🌟 ADDED SUPPORT COPY FUNCTION
+function copyEmail() {
+  const email = document.getElementById("support-email").innerText;
+  navigator.clipboard.writeText(email).then(() => {
+    alert("Email copied to clipboard!");
+  });
 }

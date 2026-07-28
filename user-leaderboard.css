@@ -294,3 +294,58 @@
         transform: translateY(0px) rotate(0deg);
     }
 }
+
+@media (max-width: 768px) {
+/* Stack the top 3 podium cards vertically on mobile */
+.podium-container {
+flex-direction: column;
+align-items: center;
+gap: 15px;
+margin: 20px 0;
+}
+
+.podium-card {
+    width: 100%;
+    max-width: 340px;
+    min-height: auto !important;
+    padding: 24px 15px;
+}
+
+/* Re-order items vertically so 1st place is at the top of the stack */
+.podium-card.first {
+    order: 1 !important;
+}
+.podium-card.second {
+    order: 2 !important;
+}
+.podium-card.third {
+    order: 3 !important;
+}
+
+/* Adjust player ranking list rows for smaller viewports */
+.ranked-list {
+    gap: 10px;
+}
+
+.list-row {
+    padding: 14px 16px;
+}
+
+.list-left {
+    gap: 14px;
+}
+
+.list-name {
+    font-size: 1rem;
+}
+
+.list-right {
+    padding: 6px 12px;
+}
+
+.list-right span {
+    font-size: 1rem;
+}
+
+
+}

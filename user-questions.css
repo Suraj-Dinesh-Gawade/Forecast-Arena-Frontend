@@ -166,3 +166,36 @@ h1{
     color:white;
     cursor:pointer;
 }
+
+@media (max-width: 768px) {
+#main-content {
+padding: 15px !important;
+}
+
+/* Stack odds boxes or adjust spacing if needed */
+.odds-container {
+    gap: 10px;
+}
+
+/* Stack the coin input and place bet button vertically on mobile for easy touch access */
+.bet-section {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.coin-input, .bet-btn {
+    width: 100% !important;
+}
+
+.question-card {
+    padding: 18px;
+    border-radius: 14px;
+}
+
+#search-container input {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+}
+
+
+}

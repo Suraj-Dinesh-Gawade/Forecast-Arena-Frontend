@@ -7,6 +7,7 @@ if (!userId) {
 document.addEventListener("DOMContentLoaded", () => {
     loadUserProfile();
     loadPredictionStatistics();
+    initMobileBadgeHints();
 });
 
 // 1. FETCH USER PROFILE DETAILS (Includes Name, Coins, Rank, and Accuracy)
@@ -136,9 +137,54 @@ function setProgressRing(percent) {
     ringBar.style.strokeDasharray = `${circumference} ${circumference}`;
     ringBar.style.strokeDashoffset = offset;
 }
+function initMobileBadgeHints() {
+    const badgeItems = document.querySelectorAll(".badge-item");
+    if (badgeItems.length === 0) return;
 
-// 4. ACHIEVEMENTS SYSTEM STATE MODIFIERS
+    // Create a sleek floating toast notification element dynamically
+    let hintToast = document.getElementById("badge-hint-toast");
+    if (!hintToast) {
+        hintToast = document.createElement("div");
+        hintToast.id = "badge-hint-toast";
+        hintToast.style.cssText = `
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(18, 18, 22, 0.95);
+            color: #ffb703;
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 183, 3, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            max-width: 85%;
+            backdrop-filter: blur(10px);
+            animation: toastFadeIn 0.3s ease;
+        `;
+        document.body.appendChild(hintToast);
+    }
 
+    badgeItems.forEach(badge => {
+        badge.addEventListener("click", () => {
+            const hintText = badge.getAttribute("title");
+            if (hintText) {
+                hintToast.innerText = hintText;
+                hintToast.style.display = "block";
+                
+                // Automatically hide the hint toast after 3.5 seconds
+                clearTimeout(badge._hintTimer);
+                badge._hintTimer = setTimeout(() => {
+                    hintToast.style.display = "none";
+                }, 3500);
+            }
+        });
+    });
+}
 
 // Safe Logout Button
 let logoutButton = document.getElementById('logout-btn');

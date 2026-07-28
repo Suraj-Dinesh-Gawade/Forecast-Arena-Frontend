@@ -458,3 +458,69 @@ html, body {
     filter: grayscale(100%);
 }
 
+@media (max-width: 768px) {
+/* 1. Adjust main profile grid and outer spacing */
+.profile-grid {
+display: flex;
+flex-direction: column;
+gap: 20px;
+margin-top: 10px;
+}
+
+.profile-card {
+    padding: 30px 18px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 🌟 FIX: Reset the desktop margin-left offset so the avatar is centered properly */
+.profile-card .avatar {
+    margin-left: 0 !important;
+    margin: 0 auto !important;
+}
+
+.avatar-wrapper {
+    margin: 0 auto 20px auto !important;
+}
+
+/* 2. Scale performance panels for touch viewports */
+.performance-panel {
+    padding: 20px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+}
+
+.performance-panel h2 {
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
+
+/* 3. Achievements showcase grid optimization */
+.achievements-showcase {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.badge-item {
+    padding: 16px 8px;
+    border-radius: 14px;
+}
+
+.badge-icon {
+    font-size: 1.8rem;
+}
+
+/* 4. Statistics counter card adjustments */
+.counter-card {
+    padding: 14px 18px;
+}
+
+.counter-card h4 {
+    font-size: 1.5rem;
+}
+
+
+}

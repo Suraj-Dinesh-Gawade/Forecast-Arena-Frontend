@@ -444,3 +444,128 @@ transition: color 0.3s ease;
 #dashboard-profile-card p:hover .u_Rank_Name {
 color: #e2e8f0 !important;
 }
+
+@media (max-width: 768px) {
+/* 1. Unlock document scrolling for mobile devices */
+html, body {
+height: auto !important;
+overflow: auto !important;
+}
+
+#container {
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* 2. Sidebar stacks on top cleanly */
+#sidebar {
+    width: 100% !important;
+    height: auto !important;
+    flex-shrink: unset;
+}
+
+#logo {
+    padding: 20px 20px 10px 20px !important;
+}
+
+#menu {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 5px !important;
+    padding: 0 10px 10px 10px !important;
+}
+
+#menu a {
+    padding: 8px 12px !important;
+    font-size: 0.85rem !important;
+}
+
+#logout-section {
+    padding: 10px 15px !important;
+}
+
+/* 3. Main content adjustments */
+#main-content {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding: 20px 15px !important;
+}
+
+/* 4. Grid and flex stack adjustments */
+#stats-container {
+    grid-template-columns: 1fr !important;
+}
+
+#dashboard-row {
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+
+}
+
+.settings-panel {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(145deg, #121214 0%, #1a1a1f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.settings-panel:hover {
+    transform: translateY(-4px);
+    border-color: #6366f1;
+}
+
+.settings-panel a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.support-card {
+    background: linear-gradient(145deg, #121214 0%, #1a1a1f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 24px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.support-info h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.support-info p {
+    color: #a1a1aa;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    background: #2d5fff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #1e40af;
+    transform: scale(1.05);
+}
