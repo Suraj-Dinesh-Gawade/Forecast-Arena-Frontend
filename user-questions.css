@@ -168,34 +168,68 @@ h1{
 }
 
 @media (max-width: 768px) {
-#main-content {
-padding: 15px !important;
-}
-
-/* Stack odds boxes or adjust spacing if needed */
-.odds-container {
-    gap: 10px;
-}
-
-/* Stack the coin input and place bet button vertically on mobile for easy touch access */
-.bet-section {
-    flex-direction: column;
-    gap: 10px;
-}
-
-.coin-input, .bet-btn {
-    width: 100% !important;
-}
-
+/* 1. Simplify Card Layout for Mobile */
 .question-card {
-    padding: 18px;
-    border-radius: 14px;
+padding: 20px !important;
+border-radius: 16px !important;
+margin-bottom: 20px !important;
+width: 100%;
+box-sizing: border-box;
 }
 
-#search-container input {
-    padding: 12px 15px;
+.question-info {
+    font-size: 1.2rem !important; /* Ensure readability */
+    margin-bottom: 12px !important;
+}
+
+/* 2. Make Odds Buttons Larger for Thumbs */
+.odds-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically for larger touch target */
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.bet-btn {
+    width: 100% !important;
+    padding: 14px !important;
     font-size: 0.95rem;
 }
 
+/* 3. Stack Input and Bet Button for Alignment */
+.bet-input-box {
+    display: flex;
+    flex-direction: column; /* Stack input on top of button */
+    gap: 10px;
+    width: 100%;
+}
+
+.coin-input {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 1rem !important; /* Prevent iOS zoom when clicking input */
+}
+
+.place-bet-btn {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 1rem !important;
+}
+
+/* 4. Fix Search Bar Alignment */
+
+#search-container {
+        width: 100% !important;
+        padding: 0 15px !important; /* Adds breathing room from screen edges */
+        box-sizing: border-box !important;
+    }
+
+    /* Force the input to fill its container and handle box-sizing */
+    #search-container input {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important; /* Prevents overflow from padding */
+        margin: 0 auto !important;
+    }
 
 }

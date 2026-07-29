@@ -134,3 +134,40 @@ const logoutButton = document.getElementById("logout-btn");
 logoutButton.addEventListener("click", async () => {
   window.location.href = "index.html";
 });
+
+// System coins
+// async function loadAuditLogs() {
+//     try {
+//         const response = await fetch("http://localhost:8000/GetAuditLogs", { headers: adminHeaders });
+//         const list = await response.json();
+//         const tbody = document.getElementById("audit-table-body");
+        
+//         if (tbody) {
+//             tbody.innerHTML = list.map(item => `
+//                 <tr>
+//                     <td>${item.username}</td>
+//                     <td>${item.question}</td>
+//                     <td style="color: #ef4444;">-${item.amount_lost}</td>
+//                     <td>${new Date(item.created_at).toLocaleString()}</td>
+//                 </tr>
+//             `).join('');
+//         }
+//     } catch (err) {
+//         console.error("Error loading audit history:", err);
+//     }
+// }
+
+async function loadTotalProfit() {
+    try {
+        const response = await fetch("http://localhost:8000/GetTotalSystemProfit", { headers: adminHeaders });
+        const data = await response.json();
+        const el = document.getElementById('totalSystemProfit');
+        if (el) el.innerHTML = data.totalProfit;
+    } catch (err) {
+        console.error("Error loading total profit:", err);
+    }
+}
+
+// Call these when the dashboard loads
+// loadAuditLogs();
+loadTotalProfit();

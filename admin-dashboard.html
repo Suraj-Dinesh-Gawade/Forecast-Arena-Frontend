@@ -1,107 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
 
-    <link rel="stylesheet" href="admin-dashboard.css">
-</head>
+    <link rel="stylesheet" href="admin-dashboard.css" />
+  </head>
 
-<body>
-
+  <body>
     <div id="container">
-
-        <div id="sidebar">
-
-            <div id="logo">
-                <h2>Forecast Arena</h2>
-            </div>
-
-            <nav id="menu">
-
-                <a href="/admin-dashboard.html" class="active">
-                    Dashboard
-                </a>
-
-                <a href="/admin-add-questions.html">
-                    Add Question
-                </a>
-
-                <a href="/admin-manage-questions.html">
-                    Manage Questions
-                </a>
-
-                <a href="/admin-user.html">
-                    Users
-                </a>
-
-            </nav>
-
-            <div id="logout-section">
-                <button id="logout-btn">
-                    Logout
-                </button>
-            </div>
-
+      <div id="sidebar">
+        <div id="logo">
+          <h2>Forecast Arena</h2>
         </div>
 
-        <div id="main-content">
+        <nav id="menu">
+          <a href="/admin-dashboard.html" class="active"> Dashboard </a>
 
-<h1>Admin Dashboard</h1>
+          <a href="/admin-add-questions.html"> Add Question </a>
 
-<div id="stats-container">
+          <a href="/admin-manage-questions.html"> Manage Questions </a>
 
-    <div class="stat-card">
-        <h3>Total Users</h3>
-        <p id="totalUsers">0</p>
-    </div>
+          <a href="/admin-user.html"> Users </a>
+        </nav>
 
-    <div class="stat-card">
-        <h3>Total Questions</h3>
-        <p id="totalQuestions">0</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Live Questions</h3>
-        <p id="liveQuestions">0</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Total Predictions</h3>
-        <p id="totalPredictions">0</p>
-    </div>
-
-</div>
-<div id="quick-actions">
-
-    <h2>Quick Actions</h2>
-
-    <div id="action-buttons">
-
-        <a href="admin-add-questions.html">
-            <button>Add New Question</button>
-        </a>
-
-        <a href="admin-manage-questions.html">
-            <button>Manage Questions</button>
-        </a>
-
-    </div>
-
-</div>
+        <div id="logout-section">
+          <button id="logout-btn">Logout</button>
         </div>
+      </div>
 
-        <div id="password-requests-section" style="margin-top: 30px; padding: 20px; background: #18181b; border-radius: 12px; color: #fff;">
-    <h3>Pending Password Reset Requests</h3>
-    <div id="requests-container" style="margin-top: 15px;">
-        <p style="color: #a1a1aa;">Loading requests...</p>
-    </div>
-</div>
+      <div id="main-content">
+        <h1>Admin Dashboard</h1>
+
+        <div id="stats-container">
+          <div class="stat-card">
+            <h3>Total Users</h3>
+            <p id="totalUsers">0</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Total Questions</h3>
+            <p id="totalQuestions">0</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Live Questions</h3>
+            <p id="liveQuestions">0</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Total Predictions</h3>
+            <p id="totalPredictions">0</p>
+          </div>
+          <div class="stat-card" style="border-left: 4px solid #ef4444">
+            <h3>Total System Profit (Lost by Users)</h3>
+            <p id="totalSystemProfit" style="color: #ef4444">0</p>
+          </div>
+        </div>
+        <div id="quick-actions">
+          <h2>Quick Actions</h2>
+
+          <div id="action-buttons">
+            <a href="admin-add-questions.html">
+              <button>Add New Question</button>
+            </a>
+
+            <a href="admin-manage-questions.html">
+              <button>Manage Questions</button>
+            </a>
+          </div>
+        </div>
+    
+      </div>
+
+      <div
+        id="password-requests-section"
+        style="
+          margin-top: 30px;
+          padding: 20px;
+          background: #18181b;
+          border-radius: 12px;
+          color: #fff;
+        "
+      >
+        <h3>Pending Password Reset Requests</h3>
+        <div id="requests-container" style="margin-top: 15px">
+          <p style="color: #a1a1aa">Loading requests...</p>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
     <script src="admin-dashboard.js"></script>
-</body>
-
+  </body>
 </html>

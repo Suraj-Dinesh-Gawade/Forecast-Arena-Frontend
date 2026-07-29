@@ -189,3 +189,4 @@ function copyEmail() {
     alert("Email copied to clipboard!");
   });
 }
+
