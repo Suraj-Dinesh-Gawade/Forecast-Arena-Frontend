@@ -186,6 +186,44 @@ function initMobileBadgeHints() {
     });
 }
 
+function handleProfileAchievementUnlocks(coins, rank, accuracy) {
+    // 1. Sharpshooter Badge (Unlocked at 70% accuracy)
+    const sharpshooter = document.getElementById("badge-sharpshooter");
+    if (sharpshooter) {
+        if (accuracy >= 70) {
+            sharpshooter.classList.remove("locked");
+            sharpshooter.classList.add("unlocked");
+        } else {
+            sharpshooter.classList.add("locked");
+            sharpshooter.classList.remove("unlocked");
+        }
+    }
+
+    // 2. Arena Tycoon Badge (Unlocked at 10,000 Coins)
+    const tycoon = document.getElementById("badge-tycoon");
+    if (tycoon) {
+        if (coins >= 10000) {
+            tycoon.classList.remove("locked");
+            tycoon.classList.add("unlocked");
+        } else {
+            tycoon.classList.add("locked");
+            tycoon.classList.remove("unlocked");
+        }
+    }
+
+    // 3. Legend Status Badge (Unlocked at Top 3 Rank)
+    const ranked = document.getElementById("badge-ranked");
+    if (ranked) {
+        if (rank <= 3) {
+            ranked.classList.remove("locked");
+            ranked.classList.add("unlocked");
+        } else {
+            ranked.classList.add("locked");
+            ranked.classList.remove("unlocked");
+        }
+    }
+}
+
 // Safe Logout Button
 let logoutButton = document.getElementById('logout-btn');
 if (logoutButton) {

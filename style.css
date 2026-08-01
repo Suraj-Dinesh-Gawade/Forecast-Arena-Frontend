@@ -234,6 +234,39 @@ br {
 display: none;
 }
 
+/* Secret Key Input Styling */
+#secret-key {
+    width: 100%;
+    padding: 12px 14px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    color: #fff;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 6px;
+}
+
+#secret-key::placeholder {
+    color: #71717a;
+}
+
+#secret-key:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Warning Text Styling */
+.secret-key-warning {
+    color: #f87171; /* Soft warning red */
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
 @media (max-width: 768px) {
 html, body {
 align-items: center;
@@ -266,47 +299,45 @@ to {
 opacity: 1;
 }
 }
+
 @media (max-width: 768px) {
-    /* 1. Center everything on mobile */
-    html, body {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* 2. Fluid form container */
-    #form_Div, #form_Names_Div {
-        width: 90%;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    /* 3. Prevent iOS/Android auto-zoom on form taps */
-    input, button {
-        font-size: 16px !important;
-    }
-
-    /* 4. Perfectly aligned inputs and buttons */
-    #name, #username, #password, #Lusername, #Lpassword {
-        margin-bottom: 16px;
-    }
-
-    #r_btn, #l_btn {
-        width: 100%;
-        padding: 14px 18px; /* Ensure padding matches inputs for visual alignment */
-        margin-top: 10px;
-        box-sizing: border-box; /* Ensures padding doesn't push the button width out */
-    }
-
-    /* 5. Tighten up the spacing */
-    #form_Names_Div {
-        margin-bottom: 20px;
-    }
+/* 1. Center everything on mobile with proper padding to prevent edge clipping */
+html, body {
+padding-left: 15px !important;
+padding-right: 15px !important;
+align-items: center !important;
+justify-content: center !important;
+height: auto;
+min-height: 100vh;
 }
-#support-section {
+
+/* 2. Fluid form container using box-sizing to handle padding correctly */
+#form_Div, #form_Names_Div, #support-section {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. Prevent iOS/Android auto-zoom on form taps */
+input, button {
+    font-size: 16px !important;
+}
+
+/* 4. Perfectly aligned inputs and buttons */
+#name, #username, #password, #Lusername, #Lpassword {
+    margin-bottom: 16px;
+}
+
+#r_btn, #l_btn {
     width: 100%;
-    max-width: 420px;
+    padding: 14px 18px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+/* 5. Support section is now inside the media query for proper mobile alignment */
+#support-section {
     margin-top: 25px;
     text-align: center;
     font-size: 0.85rem;
@@ -323,13 +354,10 @@ opacity: 1;
 }
 
 #support-section a {
-    color: #6366f1; /* Matches your Register button theme */
+    color: #6366f1;
     text-decoration: none;
     font-weight: 700;
-    transition: color 0.3s ease;
 }
 
-#support-section a:hover {
-    color: #818cf8;
-    text-decoration: underline;
+
 }

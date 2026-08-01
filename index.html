@@ -44,16 +44,10 @@
             required
             placeholder="Choose a memorable key"
           />
-          <small
-            style="
-              color: #666;
-              font-size: 0.7rem;
-              display: block;
-              margin-bottom: 15px;
-            "
-            >Warning: If you forget this key, it would be very difficult to
-            reset your password.</small
-          >
+          <small class="secret-key-warning">
+            Warning: If you forget this key, it would be very difficult to reset
+            your password.
+          </small>
           <button type="submit" id="r_btn">Register</button>
         </form>
       </div>
@@ -90,7 +84,13 @@
     </div>
     <div id="support-section">
       <p>Issues accessing your account?</p>
-<p>Email: <span style="color: #6366f1; font-weight: bold;">example@example.com</span></p>    </div>
+      <p>
+        Email:
+        <span style="color: #6366f1; font-weight: bold"
+          >example@example.com</span
+        >
+      </p>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 const userId = localStorage.getItem("userId");
 
 if (!userId) {
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 }
 
 function formatToReadableDate(endTimeString) {
@@ -55,17 +55,17 @@ async function loadQuestionData() {
     const response = await fetch("http://localhost:8000/QuestionData");
     if (!response.ok) throw new Error("HTTP Status Error : " + response.status);
 
-   const data = await response.json();
-    
+    const data = await response.json();
+
     // 1. SAFETY CHECK: If the server returned an error payload wrapped inside a 200 OK status
     if (data && data.Error) {
-        throw new Error(data.Error);
+      throw new Error(data.Error);
     }
-    
+
     // 2. DOUBLE-GUARD ARRAY CHECK: Instantly wrap a single object into an array [data] safely
-    allQuestions = Array.isArray(data) ? data : (data ? [data] : []);
-         renderQuestions(allQuestions);
-      
+    allQuestions = Array.isArray(data) ? data : data ? [data] : [];
+    renderQuestions(allQuestions);
+
     // const questionsList = await response.json();
     // if (questionsList.length === 0) {
     //   questionsContainer.innerHTML =
@@ -84,7 +84,7 @@ async function loadQuestionData() {
     //                 <span class="category">${data.Category || data.category || "General"}</span>
     //                 <h2 class="question-text">${data.question}</h2>
     //                 <p class="deadline">⏳ ${formattedDate}</p>
-                    
+
     //                 <div class="odds-container">
     //                     <button class="bet-btn yes-btn" data-id="${data.q_id}">
     //                         <span>YES</span>
@@ -116,55 +116,63 @@ async function loadQuestionData() {
 }
 
 function renderQuestions(questionList) {
-    const questionsContainer = document.getElementById('questions-container');
-    if (!questionsContainer) return;
+  const questionsContainer = document.getElementById("questions-container");
+  if (!questionsContainer) return;
 
-  
   if (!Array.isArray(questionList)) {
     questionsContainer.innerHTML =
       '<p class="no-questions" style="text-align:center; color: #888; padding:40px; background:rgba(255,255,255,0.05); border-radius:8px;">No active questions available right now.</p>';
     return;
   }
-    // if (questionList.length === 0) {
-    //   questionsContainer.innerHTML =
-    //     '<p class="no-questions">No active questions available right now.</p>';
-    //   return;
+  // if (questionList.length === 0) {
+  //   questionsContainer.innerHTML =
+  //     '<p class="no-questions">No active questions available right now.</p>';
+  //   return;
   // }
-  
-  const activeQuestions = questionList.filter(q => {
+
+  const activeQuestions = questionList.filter((q) => {
     if (!q.q_id || !q.question) return false;
 
     const text = q.question.trim().toLowerCase();
-    return text !== "no active questions available right now " && text !== "no active questions available";
+    return (
+      text !== "no active questions available right now " &&
+      text !== "no active questions available"
+    );
   });
 
-      if (activeQuestions.length === 0) {
-        questionsContainer.innerHTML =
-          '<p class="no-questions" style="text-align:center; color: #888; padding:40px; background:rgba(255,255,255,0.05); border-radius:8px;">No active questions available right now.</p>';
-        return;
+  if (activeQuestions.length === 0) {
+    questionsContainer.innerHTML =
+      '<p class="no-questions" style="text-align:center; color: #888; padding:40px; background:rgba(255,255,255,0.05); border-radius:8px;">No active questions available right now.</p>';
+    return;
   }
-  
-    let containerHTML = "";
 
-    for (let data of activeQuestions) {
-      // Format the unique end time for this specific question
-      const formattedDate = formatToReadableDate(data.End_Time || data.endTime);
+  let containerHTML = "";
 
-      const rawOptionOne = data.Odd_One || data.odd_one;
-      const optionOne = (rawOptionOne && String(rawOptionOne).toLowerCase() !== "undefined" && String(rawOptionOne).toLowerCase() !== "null") 
-          ? rawOptionOne 
-          : "YES";
+  for (let data of activeQuestions) {
+    // Format the unique end time for this specific question
+    const formattedDate = formatToReadableDate(data.End_Time || data.endTime);
 
-      const rawOptionTwo = data.Odd_Two || data.odd_two;
-      const optionTwo = (rawOptionTwo && String(rawOptionTwo).toLowerCase() !== "undefined" && String(rawOptionTwo).toLowerCase() !== "null") 
-          ? rawOptionTwo 
-          : "NO";
+    const rawOptionOne = data.Odd_One || data.odd_one;
+    const optionOne =
+      rawOptionOne &&
+      String(rawOptionOne).toLowerCase() !== "undefined" &&
+      String(rawOptionOne).toLowerCase() !== "null"
+        ? rawOptionOne
+        : "YES";
 
-      const yesOdds = data.yes_odds || data.Yes_Odds || data.yesOdds || "1.8";
-      const noOdds = data.no_odds || data.No_Odds || data.noOdds || "1.8";
+    const rawOptionTwo = data.Odd_Two || data.odd_two;
+    const optionTwo =
+      rawOptionTwo &&
+      String(rawOptionTwo).toLowerCase() !== "undefined" &&
+      String(rawOptionTwo).toLowerCase() !== "null"
+        ? rawOptionTwo
+        : "NO";
 
-      // Append cards dynamically using template literals
-      containerHTML += `
+    const yesOdds = data.yes_odds || data.Yes_Odds || data.yesOdds || "1.8";
+    const noOdds = data.no_odds || data.No_Odds || data.noOdds || "1.8";
+
+    // Append cards dynamically using template literals
+    containerHTML += `
                 <div class="question-card" data-id="${data.q_id}">
                     <span class="category">${data.Category || data.category || "General"}</span>
                     <h2 class="question-info">${data.question}</h2>
@@ -187,9 +195,9 @@ function renderQuestions(questionList) {
                     </div>
                 </div>
             `;
-    }
-    questionsContainer.innerHTML = containerHTML;
-    attachPredictionListeners();
+  }
+  questionsContainer.innerHTML = containerHTML;
+  attachPredictionListeners();
 }
 
 function attachPredictionListeners() {
@@ -219,7 +227,7 @@ function attachPredictionListeners() {
       const coins = coinsInput ? parseInt(coinsInput.value) : 0;
 
       if (!selectedBtn) {
-        alert("Please select either YES or NO first!");
+        alert("Please select either options");
         return;
       }
       if (isNaN(coins) || coins <= 0) {
@@ -261,25 +269,28 @@ function attachPredictionListeners() {
   });
 }
 
-const searchInput = document.querySelector('#search-container input');
+const searchInput = document.querySelector("#search-container input");
 if (searchInput) {
-  searchInput.addEventListener('input', (e) => {
+  searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase().trim();
-    const filtered = allQuestions.filter(q => {
-      const questionMatch = q.question && q.question.toLowerCase().includes(searchTerm);
-      const categoryMatch = (q.Category || q.category) && (q.Category || q.category).toLowerCase().includes(searchTerm);
+    const filtered = allQuestions.filter((q) => {
+      const questionMatch =
+        q.question && q.question.toLowerCase().includes(searchTerm);
+      const categoryMatch =
+        (q.Category || q.category) &&
+        (q.Category || q.category).toLowerCase().includes(searchTerm);
       return questionMatch || categoryMatch;
     });
     renderQuestions(filtered);
   });
 }
 
-loadQuestionData(); 
+loadQuestionData();
 
-// Logout Button 
-let logoutButton = document.getElementById('logout-btn');
+// Logout Button
+let logoutButton = document.getElementById("logout-btn");
 
-logoutButton.addEventListener('click', () => {
-    localStorage.removeItem("userId");
-    window.location.href = "index.html";
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("userId");
+  window.location.href = "index.html";
 });
