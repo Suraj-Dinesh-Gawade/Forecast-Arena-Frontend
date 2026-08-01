@@ -267,6 +267,11 @@ display: none;
     line-height: 1.4;
 }
 
+#support-section p{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: #ffd166;
+}
 @media (max-width: 768px) {
 html, body {
 align-items: center;
