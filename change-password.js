@@ -11,7 +11,7 @@ if (changePassBtn) {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/change-password", {
+            const response = await fetch("https://forecast-arena-backend.onrender.com/change-password", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId, oldPassword, newPassword })

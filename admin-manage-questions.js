@@ -14,7 +14,7 @@ const tableBody = document.getElementById("questions-table-body");
 
 async function loadQuestions() {
   try {
-      const response = await fetch("http://localhost:8000/ManageQuestions", {
+      const response = await fetch("https://forecast-arena-backend.onrender.com/ManageQuestions", {
         headers: adminHeaders
     });
     const questionsData = await response.json();
@@ -74,7 +74,7 @@ function attachButtonListeners() {
             const questionId = btn.getAttribute("data-id");
             
     try {
-        const response = await fetch(`http://localhost:8000/ResolveQuestions/${questionId}`, {
+        const response = await fetch(`https://forecast-arena-backend.onrender.com/ResolveQuestions/${questionId}`, {
             headers: adminHeaders,
             method: "PUT"
         });
@@ -98,7 +98,7 @@ function attachButtonListeners() {
             const questionId = delbtn.getAttribute("data-id");
 
             try {
-                const response = await fetch(`http://localhost:8000/DeleteQuestions/${questionId}`, {
+                const response = await fetch(`https://forecast-arena-backend.onrender.com/DeleteQuestions/${questionId}`, {
                     headers: adminHeaders,
                     method: "DELETE"
                 });
@@ -124,7 +124,7 @@ function attachButtonListeners() {
 
             
             try {
-                const response = await fetch('http://localhost:8000/AddWinnerData', {
+                const response = await fetch('https://forecast-arena-backend.onrender.com/AddWinnerData', {
                     method: "POST",
                     headers: { "Content-Type": "application/json", "role" : "admin" },
                     body: JSON.stringify({

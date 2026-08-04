@@ -7,7 +7,7 @@ if (registerButton) {
   registerButton.addEventListener("click", async (e) => {
     e.preventDefault();
     const secretKey = document.getElementById("secret-key").value;
-    const response = await fetch("http://localhost:8000/register", {
+    const response = await fetch("https://forecast-arena-backend.onrender.com/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,7 +60,7 @@ if (loginButton) {
       errorBanner.innerHTML = ""; // Clear any previous error messages
     }
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch("https://forecast-arena-backend.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -124,7 +124,7 @@ if (forgotPassTrigger) {
       if (!email) return;
 
         try {
-            const response = await fetch('http://localhost:8000/request-password-reset', {
+            const response = await fetch('https://forecast-arena-backend.onrender.com/request-password-reset', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, secretKey, email })

@@ -4,7 +4,7 @@ if (!userId) {
   window.location.href = "index.html";
 }
 
-fetch(`http://localhost:8000/user/${userId}`)
+fetch(`https://forecast-arena-backend.onrender.com/user/${userId}`)
   .then((response) => response.json())
   .then((data) => {
     document.getElementById("welcome-name").innerText =
@@ -55,7 +55,7 @@ fetch(`http://localhost:8000/user/${userId}`)
     console.log("Error loading user profile : ", err);
   });
 
-fetch(`http://localhost:8000/TotalBets/${userId}`)
+fetch(`https://forecast-arena-backend.onrender.com/TotalBets/${userId}`)
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
@@ -66,7 +66,7 @@ fetch(`http://localhost:8000/TotalBets/${userId}`)
   });
 
 // Logout Button
-fetch("http://localhost:8000/LatestQuestion")
+fetch("https://forecast-arena-backend.onrender.com/LatestQuestion")
   .then((response) => {
     if (!response.ok) throw new Error("Network error loading featured market.");
     return response.json();
@@ -163,7 +163,7 @@ if (changePassBtn) {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/change-password", {
+      const response = await fetch("https://forecast-arena-backend.onrender.com/change-password", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, oldPassword, newPassword }),

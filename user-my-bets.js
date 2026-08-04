@@ -10,7 +10,7 @@ async function loadUserBets() {
 
     try {
         // 1. FIXED: Call the correct detailed array endpoint instead of the count-only endpoint
-        const response = await fetch(`http://localhost:8000/UserBets/${userId}`);
+        const response = await fetch(`https://forecast-arena-backend.onrender.com/UserBets/${userId}`);
         if (!response.ok) throw new Error("Failed to load user prediction history");
 
         const betsData = await response.json();

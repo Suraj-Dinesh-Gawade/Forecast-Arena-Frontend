@@ -17,7 +17,7 @@ let allUsers = [];
 
 async function loadUser() {
     try {
-        const response = await fetch('http://localhost:8000/UserData', {
+        const response = await fetch('https://forecast-arena-backend.onrender.com/UserData', {
             headers: adminHeaders
         });
         const userData = await response.json();
@@ -102,7 +102,7 @@ function attachButtonListeners() {
             const userId = btn.getAttribute("data-id");
 
             try {
-                const response = await fetch(`http://localhost:8000/WarnUser/${userId}`, {
+                const response = await fetch(`https://forecast-arena-backend.onrender.com/WarnUser/${userId}`, {
                     headers: adminHeaders,
                     method: "PUT"
                 });
@@ -127,7 +127,7 @@ function attachButtonListeners() {
             const userId = susbtn.getAttribute("data-id");
 
             try {
-                const response = await fetch(`http://localhost:8000/SuspendUser/${userId}`, {
+                const response = await fetch(`https://forecast-arena-backend.onrender.com/SuspendUser/${userId}`, {
                     headers: adminHeaders,
                     method: "PUT"
                 });
@@ -151,7 +151,7 @@ function attachButtonListeners() {
             const userId = activatebtn.getAttribute("data-id");
 
             try {
-                const response = await fetch(`http://localhost:8000/ActivateUser/${userId}`, {
+                const response = await fetch(`https://forecast-arena-backend.onrender.com/ActivateUser/${userId}`, {
                     headers: adminHeaders,
                     method: "PUT"
                 });

@@ -16,7 +16,7 @@ let live_Questions = document.getElementById("liveQuestions");
 let total_Predictions = document.getElementById("totalPredictions");
 
 async function loadUsersCount() {
-  const response = await fetch("http://localhost:8000/NoOfUsers", {
+  const response = await fetch("https://forecast-arena-backend.onrender.com/NoOfUsers", {
     headers: adminHeaders,
   });
 
@@ -25,7 +25,7 @@ async function loadUsersCount() {
 }
 
 async function loadQuestionsCount() {
-  const response = await fetch("http://localhost:8000/NoOfQuestions", {
+  const response = await fetch("https://forecast-arena-backend.onrender.com/NoOfQuestions", {
     headers: adminHeaders,
   });
 
@@ -34,7 +34,7 @@ async function loadQuestionsCount() {
 }
 
 async function loadLiveQuestionsCount() {
-  const response = await fetch("http://localhost:8000/NoOfLiveQuestions", {
+  const response = await fetch("https://forecast-arena-backend.onrender.com/NoOfLiveQuestions", {
     headers: adminHeaders,
   });
 
@@ -43,7 +43,7 @@ async function loadLiveQuestionsCount() {
 }
 
 async function loadTotalPredictions() {
-  const response = await fetch("http://localhost:8000/NoOfTotalPredictions", {
+  const response = await fetch("https://forecast-arena-backend.onrender.com/NoOfTotalPredictions", {
     headers: adminHeaders,
   });
 
@@ -62,7 +62,7 @@ async function loadPasswordRequests() {
 
   try {
     const response = await fetch(
-      "http://localhost:8000/admin/password-requests",
+      "https://forecast-arena-backend.onrender.com/admin/password-requests",
       {
         headers: adminHeaders,
       },
@@ -114,7 +114,7 @@ async function approveReset(requestId, username) {
   if (!tempPassword) return;
 
   try {
-    const response = await fetch("http://localhost:8000/admin/approve-reset", {
+    const response = await fetch("https://forecast-arena-backend.onrender.com/admin/approve-reset", {
       method: "POST",
       headers: adminHeaders,
       body: JSON.stringify({ requestId, username, tempPassword }),
@@ -138,7 +138,7 @@ logoutButton.addEventListener("click", async () => {
 // System coins
 // async function loadAuditLogs() {
 //     try {
-//         const response = await fetch("http://localhost:8000/GetAuditLogs", { headers: adminHeaders });
+//         const response = await fetch("https://forecast-arena-backend.onrender.com/GetAuditLogs", { headers: adminHeaders });
 //         const list = await response.json();
 //         const tbody = document.getElementById("audit-table-body");
         
@@ -159,7 +159,7 @@ logoutButton.addEventListener("click", async () => {
 
 async function loadTotalProfit() {
     try {
-        const response = await fetch("http://localhost:8000/GetTotalSystemProfit", { headers: adminHeaders });
+        const response = await fetch("https://forecast-arena-backend.onrender.com/GetTotalSystemProfit", { headers: adminHeaders });
         const data = await response.json();
         const el = document.getElementById('totalSystemProfit');
         if (el) el.innerHTML = data.totalProfit;

@@ -15,7 +15,7 @@ let button = document.querySelector(".submit-btn");
 if (button) {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/QuestionData", {
+    const response = await fetch("https://forecast-arena-backend.onrender.com/QuestionData", {
       method: "POST",
       headers: { "Content-Type": "application/json", "role": "admin" },
       body: JSON.stringify({

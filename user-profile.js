@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 1. FETCH USER PROFILE DETAILS (Includes Name, Coins, Rank, and Accuracy)
 async function loadUserProfile() {
     try {
-        const response = await fetch(`http://localhost:8000/user/${userId}`);
+        const response = await fetch(`https://forecast-arena-backend.onrender.com/user/${userId}`);
         if (!response.ok) throw new Error("Profile API retrieval failed");
 
         const data = await response.json();
@@ -69,7 +69,7 @@ async function loadUserProfile() {
 // 2. FETCH PERFORMANCE AND PREDICTION STATISTICS
 async function loadPredictionStatistics() {
     try {
-        const response = await fetch(`http://localhost:8000/TotalBets/${userId}`);
+        const response = await fetch(`https://forecast-arena-backend.onrender.com/TotalBets/${userId}`);
         if (!response.ok) throw new Error("Prediction API retrieval failed");
 
         const data = await response.json();

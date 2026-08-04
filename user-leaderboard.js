@@ -15,7 +15,7 @@ async function loadLeaderboard() {
 
     try {
         // 1. Fetch ranking records from your backend
-        const response = await fetch("http://localhost:8000/LeaderboardData");
+        const response = await fetch("https://forecast-arena-backend.onrender.com/LeaderboardData");
         if (!response.ok) throw new Error("HTTP Status Error : " + response.status);
 
         const data = await response.json();

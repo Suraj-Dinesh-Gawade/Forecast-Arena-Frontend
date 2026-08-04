@@ -52,7 +52,7 @@ async function loadQuestionData() {
   if (!questionsContainer) return;
 
   try {
-    const response = await fetch("http://localhost:8000/QuestionData");
+    const response = await fetch("https://forecast-arena-backend.onrender.com/QuestionData");
     if (!response.ok) throw new Error("HTTP Status Error : " + response.status);
 
     const data = await response.json();
@@ -240,7 +240,7 @@ function attachPredictionListeners() {
       const userId = localStorage.getItem("userId") || 1;
 
       try {
-        const response = await fetch("http://localhost:8000/AddBetsData", {
+        const response = await fetch("https://forecast-arena-backend.onrender.com/AddBetsData", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
